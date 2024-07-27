@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 import { Settings } from '@styled-icons/material/Settings'; 
 import { Search } from '@styled-icons/material/Search';
-import { motion } from 'framer';
+import { motion } from 'framer-motion';
 
 export const Main = styled.main`
   padding: 20px;
 `;
 
 export const Item = styled.div`
+  width: calc(33.333% - 20px); 
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  box-sizing: border-box;
 `;
 
 export const FooterContainer = styled.footer`
@@ -88,4 +90,37 @@ export const SearchInput = styled(motion.input)`
   clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
   outline: none;
   transition: all 0.3s ease;
+`;
+
+export const GenreButton = styled.button`
+  padding: 7px 30px;
+  border: none;
+  background-color: var(--on-primary);
+  color: var(--on-surface-lv2);
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  position: relative;
+  clip-path: polygon(14% 0, 100% 0%, 84% 100%, 0% 100%);
+`;
+
+export const GenreDropdown = styled.div`
+  position: absolute;
+  background-color: var(--surface-1);
+  max-height: 200px;
+  z-index: 1;
+`;
+
+export const GenreButtonContainer = styled.div`
+  margin-left: 50px;
+  margin-top: 5px;
+`;
+
+export const GenreItem = styled.div`
+  padding: 10px 18px;
+  cursor: pointer;
+  color: var(--on-surface-lv2);
+  &:hover {
+    background-color: var(--surface-2);
+  }
 `;
