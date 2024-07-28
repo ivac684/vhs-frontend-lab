@@ -7,7 +7,7 @@ const Container = styled.div`
   gap: 20px;
   margin: 0 auto;
   margin-left: 20px;
-  max-width: 100vw;
+  
 `;
 
 const ItemContainer = ({ children }: ChildrenProps) => {

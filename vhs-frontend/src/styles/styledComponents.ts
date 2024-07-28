@@ -2,18 +2,95 @@ import styled from 'styled-components';
 import { Settings } from '@styled-icons/material/Settings'; 
 import { Search } from '@styled-icons/material/Search';
 import { motion } from 'framer-motion';
+import { Delete } from '@styled-icons/material/Delete';
+import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt'
 
 export const Main = styled.main`
   padding: 20px;
 `;
 
-export const Item = styled.div`
+export const Item = styled.article`
   width: calc(33.333% - 20px); 
+  height: 150px;
   margin-bottom: 20px;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid var(--surface-1);
+  background-color: var(--on-surface-lv3);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+export const ItemImageContainer = styled.div`
+  width: 40%;
+  height: 100%;
+  background-color: black; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+
+  &:hover img {
+    transform: scale(1.4);
+    cursor: pointer;
+  }
+`;
+
+export const ItemImage = styled.img`
+  width: 70%; 
+  height: 70%;
+  transition: transform 0.3s ease;
+`;
+
+export const ItemDetails = styled.div`
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const ItemTitle = styled.h3`
+  font-size: 16px;
+  color: var(--on-surface-lv2);
+  cursor: pointer;
+`;
+
+export const ItemInfo = styled.p`
+  font-size: 14px;
+  margin: 2px 0;
+`;
+
+export const ItemsRow = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+`;
+
+export const ItemGenre = styled(ItemInfo)`
+  margin-right: 15px;
+  color: var(--primary-variant);
+`;
+
+export const ItemDuration = styled(ItemInfo)`
+color: var(--on-surface-lv4);
+font-style: italic;
+`;
+
+export const ItemYear = styled(ItemInfo)`
+margin-left: 5px;
+color: var(--primary-highlight);
+cursor: pointer;
+`;
+
+export const ItemAvailability = styled(ItemInfo)`
+  color: var(--success);
+  margin-top: auto;
 `;
 
 export const FooterContainer = styled.footer`
@@ -81,6 +158,20 @@ export const SearchIcon = styled(Search)`
   color: var(--on-primary);
   width: 30px; 
   height: 30px;
+`;
+export const EditIcon = styled(EditAlt)` 
+  cursor: pointer;
+  color: var(--primary-variant);
+  margin-left: auto;
+  margin-right: 10px;
+  width: 25px; 
+  height: 25px;
+`;
+export const DeleteIcon = styled(Delete)` 
+  cursor: pointer;
+  color: var(--primary-variant);
+  width: 25px; 
+  height: 25px;
 `;
 
 export const SearchInput = styled(motion.input)`
