@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useVHSData } from '@/customHooks/useVHSdata';
 import { 
   Item, 
@@ -20,6 +20,7 @@ import {
   DeleteIcon
 } from '@/styles/styledComponents';
 import ItemContainer from '@/components/ItemContainer';
+import { deleteMovie } from '@/utils/deleteMovie';
 
 interface HomepageProps {
     searchQuery: string;
@@ -28,6 +29,7 @@ interface HomepageProps {
 const Homepage = ({ searchQuery }: HomepageProps) => {
   const { data, loading, error } = useVHSData(searchQuery);
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [movieData, setMovieData] = useState(data);
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -39,6 +41,15 @@ const Homepage = ({ searchQuery }: HomepageProps) => {
   if (error) {
     return <p>{error}</p>;
   }
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteMovie(id);
+      setMovieData(prevMovieData => prevMovieData.filter(item => item.id !== id));
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
+  };
 
   const genres = Array.from(new Set(data.flatMap(item => item.genre)));
 
@@ -70,7 +81,8 @@ const Homepage = ({ searchQuery }: HomepageProps) => {
               </ItemsRow>
               <ItemsRow>
               <ItemAvailability>{item.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}</ItemAvailability>
-              <EditIcon /> <DeleteIcon />
+              <EditIcon /> 
+              <DeleteIcon onClick={() => handleDelete(item.id)} />
               </ItemsRow>
             </ItemDetails>
           </Item>
@@ -81,3 +93,4 @@ const Homepage = ({ searchQuery }: HomepageProps) => {
 };
 
 export default Homepage;
+
