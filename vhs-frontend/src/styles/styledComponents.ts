@@ -5,8 +5,16 @@ import { motion } from 'framer-motion';
 import { Delete } from '@styled-icons/material/Delete';
 import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt'
 
-export const Main = styled.main`
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+`;
+
+export const MainContent = styled.main`
+  flex: 1; 
   padding: 20px;
+  /* Add additional styles as needed */
 `;
 
 export const Item = styled.article`
@@ -14,7 +22,6 @@ export const Item = styled.article`
   height: 150px;
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: 5px;
   border: 1px solid var(--surface-1);
   background-color: var(--on-surface-lv3);
   display: flex;
@@ -90,7 +97,8 @@ cursor: pointer;
 
 export const ItemAvailability = styled(ItemInfo)`
   color: var(--success);
-  margin-top: auto;
+ bottom: 10px;
+  left: 10px;
 `;
 
 export const FooterContainer = styled.footer`
@@ -124,7 +132,7 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   background: var(--surface-1);
   height: 90px;
-  width: 100%;
+  min-width: 100vw;
   padding: 0 20px; 
   position: relative; 
 `;
@@ -162,7 +170,6 @@ export const SearchIcon = styled(Search)`
 export const EditIcon = styled(EditAlt)` 
   cursor: pointer;
   color: var(--primary-variant);
-  margin-left: auto;
   margin-right: 10px;
   width: 25px; 
   height: 25px;
@@ -174,6 +181,10 @@ export const DeleteIcon = styled(Delete)`
   height: 25px;
 `;
 
+export const IconsWrapper = styled.div`
+margin-left: auto;
+`
+
 export const SearchInput = styled(motion.input)`
   width: 200px;
   padding: 5px 10px;
@@ -183,28 +194,40 @@ export const SearchInput = styled(motion.input)`
   transition: all 0.3s ease;
 `;
 
-export const GenreButton = styled.button`
+
+export const GenreAddButton = styled.button`
   padding: 7px 30px;
   border: none;
   background-color: var(--on-primary);
   color: var(--on-surface-lv2);
   font-size: 14px;
   cursor: pointer;
+
+`
+export const GenreButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
-  position: relative;
+`;
+export const GenreButton = styled(GenreAddButton)`
+ margin-left: 25px;
+  margin-top: 5px;
   clip-path: polygon(14% 0, 100% 0%, 84% 100%, 0% 100%);
 `;
+
+export const AddButton = styled(GenreAddButton)`
+ margin-right: 25px;
+  margin-top: 5px;
+  clip-path: polygon(0 0, 87% 0, 100% 100%, 11% 100%);
+`;
+
 
 export const GenreDropdown = styled.div`
   position: absolute;
   background-color: var(--surface-1);
   max-height: 200px;
   z-index: 1;
-`;
-
-export const GenreButtonContainer = styled.div`
-  margin-left: 50px;
-  margin-top: 5px;
 `;
 
 export const GenreItem = styled.div`
@@ -214,4 +237,68 @@ export const GenreItem = styled.div`
   &:hover {
     background-color: var(--surface-2);
   }
+`;
+
+export const FormHeader = styled.h1`
+  font-size: 20px;
+  color: var(--on-surface-lv2);
+  margin-bottom: 20px;
+   text-align: center; 
+`;
+
+export const FormField = styled.div`
+  margin-bottom: 15px;
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--surface-2);
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--on-surface-lv1);
+
+  &:focus {
+    border-color: var(--primary-variant);
+    outline: none;
+  }
+`;
+
+export const TextArea = styled.textarea`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--surface-2);
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--on-surface-lv1);
+  resize: vertical;
+
+  &:focus {
+    border-color: var(--primary-variant);
+    outline: none;
+  }
+`;
+
+export const SubmitButton = styled.button`
+  width: 12%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--success);
+  color: var(--primary-variant);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center;
+   display: block;
+   margin: auto;
+  &:hover {
+    background-color: var(--primary-default);
+  }
+`;
+
+export const ErrorMessage = styled.p`
+  color: var(--error);
+  font-size: 14px;
+  margin-top: 10px;
 `;

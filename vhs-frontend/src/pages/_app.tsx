@@ -42,7 +42,6 @@ export const fetcher = (...args) =>
       <SWRConfig value={{ fetcher }}>
         <ThemeContextProvider>
           <MainContainer>
-            <Header />
             <ContentWrapper>
               <Component {...pageProps} />
             </ContentWrapper>
