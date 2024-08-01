@@ -7,6 +7,7 @@ const Container = styled.div`
   gap: 20px;
   margin: 0 auto;
   margin-left: 20px;
+  margin-bottom: 100px;
   width: 100vw;
 `;
 
