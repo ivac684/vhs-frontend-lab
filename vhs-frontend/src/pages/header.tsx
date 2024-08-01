@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
-import { useThemeContext } from '@/context/ThemeContext';
-import { FlexContainer, HeaderContainer, ImageContainer, SearchIcon, SettingsIcon, SearchInput } from '@/styles/styledComponents';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react'
+import { useThemeContext } from '@/context/ThemeContext'
+import {
+  FlexContainer,
+  HeaderContainer,
+  ImageContainer,
+  SearchIcon,
+  SettingsIcon,
+  SearchInput,
+} from '@/styles/styledComponents'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 interface HeaderProps {
-  setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
+  setSearchQuery?: React.Dispatch<React.SetStateAction<string>>
 }
 
 const Header = ({ setSearchQuery }: HeaderProps) => {
-  const { setIsDark, isDark } = useThemeContext();
-  const [searchVisible, setSearchVisible] = useState(false);
+  const { setIsDark, isDark } = useThemeContext()
+  const [searchVisible, setSearchVisible] = useState(false)
 
   const toggleSearch = () => {
-    setSearchVisible(!searchVisible);
-  };
+    setSearchVisible(!searchVisible)
+  }
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (setSearchQuery) {
-      setSearchQuery(event.target.value);
+      setSearchQuery(event.target.value)
     }
-  };
+  }
   return (
     <HeaderContainer>
       <FlexContainer>
@@ -41,10 +49,12 @@ const Header = ({ setSearchQuery }: HeaderProps) => {
         <Image src="/backtothepast.png" alt="Back to the Past" width={170} height={80} />
       </ImageContainer>
       <FlexContainer>
-        <SettingsIcon />
+        <Link href={`/settings`}>
+          <SettingsIcon />
+        </Link>
       </FlexContainer>
     </HeaderContainer>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
