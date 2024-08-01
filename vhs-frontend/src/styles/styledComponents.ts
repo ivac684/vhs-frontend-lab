@@ -18,6 +18,32 @@ export const MainContent = styled.main`
   margin-bottom: 70px;
 `;
 
+export const ItemInfo = styled.p`
+  font-size: 14px;
+  margin: 2px 0;
+`;
+export const ItemGenre = styled(ItemInfo)`
+  margin-right: 15px;
+  color: var(--primary-variant);
+`;
+
+export const ItemDuration = styled(ItemInfo)`
+color: var(--on-surface-lv4);
+font-style: italic;
+ display: inline; 
+ white-space: nowrap;
+`;
+
+export const ItemDescription = styled(ItemInfo)`
+  margin-right: 15px;
+  color: var(--on-surface-lv2);
+  opacity: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+`;
+
 export const Item = styled.article`
   width: calc(33.333% - 20px); 
   height: 150px;
@@ -28,8 +54,17 @@ export const Item = styled.article`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
   &:hover {
     transform: scale(1.05);
+  }
+  &:hover ${ItemGenre},
+  &:hover ${ItemDuration} {
+    display: none; 
+  }
+     &:hover ${ItemDescription} {
+    opacity: 1; 
+    transition: all 0.8s ease;
   }
 `;
 
@@ -68,10 +103,6 @@ export const ItemTitle = styled.h3`
   cursor: pointer;
 `;
 
-export const ItemInfo = styled.p`
-  font-size: 14px;
-  margin: 2px 0;
-`;
 
 export const ItemsRow = styled.div`
   display: flex;
@@ -80,15 +111,6 @@ export const ItemsRow = styled.div`
   margin-top: 5px;
 `;
 
-export const ItemGenre = styled(ItemInfo)`
-  margin-right: 15px;
-  color: var(--primary-variant);
-`;
-
-export const ItemDuration = styled(ItemInfo)`
-color: var(--on-surface-lv4);
-font-style: italic;
-`;
 
 export const ItemYear = styled(ItemInfo)`
 margin-left: 5px;
@@ -177,7 +199,11 @@ export const DeleteIcon = styled(Delete)`
 `;
 
 export const IconsWrapper = styled.div`
-margin-left: auto;
+position: absolute;
+bottom: 0;
+right: 0;
+margin-bottom: 5px;
+margin-right: 5px;
 `
 
 export const SearchInput = styled(motion.input)`

@@ -11,7 +11,7 @@ import {
   PageContainer,
   MainContent,
   ItemTitle,
-} from '../../../styles/styledComponents'
+} from '../../styles/styledComponents'
 import FormContainer from '@/components/FormContainer'
 import Link from 'next/link'
 import Header from '@/pages/header'

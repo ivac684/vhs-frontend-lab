@@ -20,6 +20,7 @@ import {
   DeleteIcon,
   AddButton,
   IconsWrapper,
+  ItemDescription,
 } from '@/styles/styledComponents'
 import ItemContainer from '@/components/ItemContainer'
 import { deleteMovie } from '@/utils/deleteMovie'
@@ -63,7 +64,7 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
     <>
       <GenreButtonContainer>
         <GenreButton onClick={toggleDropdown}>GENRE</GenreButton>
-        <Link href="/movies/add-movie">
+        <Link href="/add-movie">
           <AddButton>ADD MOVIE</AddButton>
         </Link>
       </GenreButtonContainer>
@@ -83,19 +84,22 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
             </ItemImageContainer>
             <ItemDetails>
               <ItemsRow>
-              <Link href={`/movies/movie-details/${item.id}`}>
-                <ItemTitle>{item.title}</ItemTitle> <ItemYear>({item.releasedAt})</ItemYear>
-              </Link>
+                <Link href={`/movie-details/${item.id}`}>
+                  <ItemTitle>{item.title}</ItemTitle> <ItemYear>({item.releasedAt})</ItemYear>
+                </Link>
               </ItemsRow>
               <ItemsRow>
                 <ItemGenre>
                   <b>{item.genre}</b>
                 </ItemGenre>
                 <ItemDuration>{item.duration} min</ItemDuration>
+                <Link href={`/movie-details/${item.id}`}>
+                  <ItemDescription>{item.description}...</ItemDescription>
+                </Link>
               </ItemsRow>
               <ItemAvailability>{item.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}</ItemAvailability>
               <IconsWrapper>
-                <Link href={`/movies/edit-movie/${item.id}`}>
+                <Link href={`/edit-movie/${item.id}`}>
                   <EditIcon />
                 </Link>
                 <DeleteIcon onClick={() => handleDelete(item.id)} />

@@ -12,11 +12,11 @@ import {
   SubmitButton,
   TextArea,
 } from '@/styles/styledComponents'
-import Header from '../header'
 import Link from 'next/link'
 import FormContainer from '@/components/FormContainer'
 import { handleChange } from '@/utils/handleChangeForm'
-import Footer from '../footer'
+import Header from './header'
+import Footer from './footer'
 
 export default function AddMovie() {
   const [form, setForm] = useState<VHSForm>({
