@@ -240,7 +240,20 @@ export const GenreButtonContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  position: relative;
 `;
+
+export const GenreDropdown = styled.div`
+  background-color: rgba(0, 0, 0, 0.9); 
+  max-height: 200px;
+  z-index: 1000;
+  margin-top: 140px;
+  margin-left: 25px;
+  margin-bottom: 5px;
+  width: 95px;
+  position: absolute;
+`;
+
 export const GenreButton = styled(GenreAddButton)`
  margin-left: 25px;
   margin-top: 5px;
@@ -253,20 +266,12 @@ export const AddButton = styled(GenreAddButton)`
   clip-path: polygon(0 0, 87% 0, 100% 100%, 11% 100%);
 `;
 
-
-export const GenreDropdown = styled.div`
-  position: absolute;
-  background-color: var(--surface-1);
-  max-height: 200px;
-  z-index: 1;
-`;
-
 export const GenreItem = styled.div`
   padding: 10px 18px;
   cursor: pointer;
   color: var(--on-surface-lv1);
   &:hover {
-    background-color: var(--surface-2);
+    background-color: var(--secondary-variant);
   }
 `;
 

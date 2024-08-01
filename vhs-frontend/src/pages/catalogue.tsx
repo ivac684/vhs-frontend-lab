@@ -6,7 +6,6 @@ import {
   ItemImage,
   ItemDetails,
   ItemTitle,
-  ItemInfo,
   ItemsRow,
   ItemGenre,
   ItemDuration,
@@ -26,6 +25,7 @@ import ItemContainer from '@/components/ItemContainer'
 import { deleteMovie } from '@/utils/deleteMovie'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { filterMoviesByGenre } from '@/utils/handleGenreFiltering'
 
 interface HomepageProps {
   searchQuery: string
@@ -34,12 +34,31 @@ interface HomepageProps {
 const Catalogue = ({ searchQuery }: HomepageProps) => {
   const { data, loading, error } = useVHSData(searchQuery)
   const [dropdownVisible, setDropdownVisible] = useState(false)
+  const [selectedGenre, setSelectedGenre] = useState<string | null>('All')
   const [movieData, setMovieData] = useState(data)
   const router = useRouter()
+
+  const filteredMovies = filterMoviesByGenre(data, selectedGenre)
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible)
   }
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteMovie(id)
+      setMovieData(prevMovieData => prevMovieData.filter(item => item.id !== id))
+      router.reload();
+    } catch (error) {
+      console.error('Error deleting item:', error)
+    }
+  }
+  const handleGenreClick = (genre: string) => {
+    setSelectedGenre(genre)
+  }
+
+  const genres = Array.from(new Set(data.flatMap(item => item.genre)))
+  const allGenres = ['All', ...genres]
 
   if (loading) {
     return <p>Loading...</p>
@@ -47,18 +66,6 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
   if (error) {
     return <p>{error}</p>
   }
-
-  const handleDelete = async (id: number) => {
-    try {
-      await deleteMovie(id)
-      setMovieData(prevMovieData => prevMovieData.filter(item => item.id !== id))
-      router.reload()
-    } catch (error) {
-      console.error('Error deleting item:', error)
-    }
-  }
-
-  const genres = Array.from(new Set(data.flatMap(item => item.genre)))
 
   return (
     <>
@@ -70,17 +77,23 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
       </GenreButtonContainer>
       {dropdownVisible && (
         <GenreDropdown>
-          {genres.map((genre, index) => (
-            <GenreItem key={index}>{genre}</GenreItem>
+          {allGenres.map((genre, index) => (
+            <GenreItem
+              key={index}
+              onClick={() => handleGenreClick(genre)}
+              style={{ cursor: 'pointer', fontWeight: selectedGenre === genre ? 'bold' : 'normal' }}
+            >
+              {genre}
+            </GenreItem>
           ))}
         </GenreDropdown>
       )}
 
       <ItemContainer>
-        {data.map(item => (
+        {filteredMovies.map(item => (
           <Item key={item.id}>
             <ItemImageContainer>
-            <ItemImage
+              <ItemImage
                 src={item.thumbnail ? `http://localhost:3000/${item.thumbnail}` : '/placeholder.png'}
                 alt={item.title}
               />
