@@ -7,27 +7,27 @@
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
-    --primary-default: #374DF5;
-    --primary-variant: #1327BA;
+    --primary-default: #FCFCC5;
+    --primary-variant: #FC8F36;
     --primary-highlight: #E1EDFE;
 
-    --secondary-default: #F0EEDF;
-    --secondary-variant: #DDDBC9;
-    --secondary-highlight: #F7F6EF;
+    --secondary-default: #FC8F36;
+    --secondary-variant: #f0e5b4;
+    --secondary-highlight: #2c2b26;
 
-    --on-primary: #A83C19;
+    --on-primary: #FC8422;
     --on-secondary: #FFFFFF;
 
     --surface-0: #EFF3F8;
-    --surface-1: #FFFFFF;
+    --surface-1: #183D00;
     --surface-2: #F2F5FA;
+    
+    --on-surface-lv1: #fef8f8;
+    --on-surface-lv2: #444343;
+    --on-surface-lv3: rgb(3, 87, 3);
+    --on-surface-lv4: #795f00;
 
-    --on-surface-lv1: #121212;
-    --on-surface-lv2: #A0A0A0;
-    --on-surface-lv3: #D0D0D0;
-    --on-surface-lv4: #E7E7E7;
-
-    --error: #EA4545;
+    --edit: #183D00;
     --alert: #D8B127;
     --success: #1DA86D;
 
@@ -38,36 +38,30 @@
 }
 
 .dark {
-    --primary-default: #103e08;
-    --primary-variant: #ffb560; 
+    --primary-default: #3B0302;
+    --primary-variant: #020202; 
     --primary-highlight: #f3c796;
 
-    --secondary-default: #3A3A39;
-    --secondary-variant: #404039;
-    --secondary-highlight: #3B0302;
+    --secondary-default: #792204;
+    --secondary-variant: #161614;
+    --secondary-highlight: #f1e7dc;
 
     --on-primary: #A83C19;
     --on-secondary: #0a3002;
 
-    --surface-0: #101114;
+    --surface-0: #D0D0D0;
     --surface-1: #020202;
-    --surface-2: #14161B;
+    --surface-2: #D0D0D0;
 
-    --on-surface-lv1: #FFFFFF;
-    --on-surface-lv2: #f8d1a4;
-    --on-surface-lv3: #792204;
+    --on-surface-lv1: #f8d1a4;
+    --on-surface-lv2: #ffb560;
+    --on-surface-lv3: #1ac057;
     --on-surface-lv4: #9e866b;
+    --on-surface-lv5: #c18e55;
+
+    --genre: #F26666;
     --delete: rgb(202, 0, 0);
     --edit: rgb(2, 113, 2);
-
-    --error: #F26666;
-    --alert: #ECCA51;
-    --success: #27a957;
-
-    --live: #c18e55;
-
-    --elevation-1: #182215;
-    --elevation-2: #2B2E38;
 }
 
 * {
@@ -96,7 +90,7 @@ main {
 body {
     height: 100%;
     flex-shrink: 1;
-    background:  var(--secondary-highlight);
+    background:  var( --primary-default);
 }
 
 a {
@@ -109,6 +103,6 @@ a {
         color-scheme: dark;
     }
     body {
-        background: var(--secondary-highlight);
+        background: var( --primary-default);
     }
 }

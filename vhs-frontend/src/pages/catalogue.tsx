@@ -80,7 +80,10 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
         {data.map(item => (
           <Item key={item.id}>
             <ItemImageContainer>
-              <ItemImage src="/placeholder.png" alt={item.title} />
+            <ItemImage
+                src={item.thumbnail ? `http://localhost:3000/${item.thumbnail}` : '/placeholder.png'}
+                alt={item.title}
+              />
             </ItemImageContainer>
             <ItemDetails>
               <ItemsRow>

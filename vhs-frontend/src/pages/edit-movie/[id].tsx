@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import axios from 'axios'
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 import {
   FormHeader,
   FormField,
@@ -11,14 +11,27 @@ import {
   PageContainer,
   MainContent,
   ItemTitle,
-} from '../../styles/styledComponents'
-import FormContainer from '@/components/FormContainer'
-import Link from 'next/link'
-import Header from '@/pages/header'
-import { handleChange } from '@/utils/handleChangeForm'
-import Footer from '@/pages/footer'
+  ArrowBackIcon,
+} from '../../styles/styledComponents';
+import FormContainer from '@/components/FormContainer';
+import Link from 'next/link';
+import Header from '@/pages/header';
+import Footer from '@/pages/footer';
+import UploadAndDisplayImage from '@/components/uploadImage';
 
-export default function EditMovie() {
+type VHSForm = {
+  title: string;
+  description: string;
+  genre: string;
+  duration: number;
+  releasedAt: number;
+  rentalPrice: number;
+  rentalDuration: number;
+  quantity: number;
+  thumbnail: string | File;
+};
+
+const EditMovie = () => {
   const [form, setForm] = useState<VHSForm>({
     title: '',
     description: '',
@@ -29,45 +42,68 @@ export default function EditMovie() {
     rentalDuration: 0,
     quantity: 0,
     thumbnail: '',
-  })
-  const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
-  const router = useRouter()
-  const { id } = router.query
+  });
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
+  const { id } = router.query;
 
   useEffect(() => {
     if (id) {
       axios
         .get(`http://localhost:3000/api/vhs/${id}`)
         .then(response => {
-          setForm(response.data)
-          setLoading(false)
+          setForm(response.data);
+          setLoading(false);
         })
         .catch(() => {
-          setError('Failed to load movie data')
-          setLoading(false)
-        })
+          setError('Failed to load movie data');
+          setLoading(false);
+        });
     }
-  }, [id])
+  }, [id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    try {
-      await axios.patch(`http://localhost:3000/api/vhs/${id}`, form)
-      router.push('/')
-    } catch {
-      setError('Failed to update movie')
+    e.preventDefault();
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(form)) {
+      formData.append(key, value as string | Blob);
     }
-  }
+    try {
+      await axios.patch(`http://localhost:3000/api/vhs/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      router.push('/');
+    } catch {
+      setError('Failed to update movie');
+    }
+  };
 
-  if (loading) return <p>Loading...</p>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm(prevForm => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleImageSelect = (file: File | null) => {
+    setForm(prevForm => ({
+      ...prevForm,
+      thumbnail: file || '',
+    }));
+  };
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <PageContainer>
       <Header />
       <MainContent>
         <Link href="/">
-          <ItemTitle>GO BACK</ItemTitle>
+          <ArrowBackIcon />
         </Link>
         <FormContainer>
           <FormHeader>EDIT MOVIE</FormHeader>
@@ -78,7 +114,7 @@ export default function EditMovie() {
                 type="text"
                 name="title"
                 value={form.title}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Title"
               />
             </FormField>
@@ -87,7 +123,7 @@ export default function EditMovie() {
               <TextArea
                 name="description"
                 value={form.description}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Description"
               />
             </FormField>
@@ -97,7 +133,7 @@ export default function EditMovie() {
                 type="text"
                 name="genre"
                 value={form.genre}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Genre"
               />
             </FormField>
@@ -107,7 +143,7 @@ export default function EditMovie() {
                 type="number"
                 name="duration"
                 value={form.duration}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Duration (minutes)"
               />
             </FormField>
@@ -117,7 +153,7 @@ export default function EditMovie() {
                 type="number"
                 name="releasedAt"
                 value={form.releasedAt}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Released Year"
               />
             </FormField>
@@ -127,7 +163,7 @@ export default function EditMovie() {
                 type="number"
                 name="rentalPrice"
                 value={form.rentalPrice}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Rental Price"
               />
             </FormField>
@@ -137,7 +173,7 @@ export default function EditMovie() {
                 type="number"
                 name="rentalDuration"
                 value={form.rentalDuration}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Rental Duration (days)"
               />
             </FormField>
@@ -147,26 +183,22 @@ export default function EditMovie() {
                 type="number"
                 name="quantity"
                 value={form.quantity}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Quantity"
               />
             </FormField>
             <FormField>
               <ItemTitle>Thumbnail</ItemTitle>
-              <Input
-                type="text"
-                name="thumbnail"
-                value={form.thumbnail}
-                onChange={e => handleChange({ e, setForm })}
-                placeholder="Thumbnail URL (optional)"
-              />
+              <UploadAndDisplayImage onImageSelect={handleImageSelect} />
             </FormField>
             <SubmitButton type="submit">SAVE</SubmitButton>
             {error && <ErrorMessage>{error}</ErrorMessage>}
           </form>
         </FormContainer>
       </MainContent>
-      <Footer/>
+      <Footer />
     </PageContainer>
-  )
-}
+  );
+};
+
+export default EditMovie;

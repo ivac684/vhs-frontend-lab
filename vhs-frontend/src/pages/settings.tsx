@@ -1,10 +1,11 @@
 import React from 'react'
 import { useThemeContext } from '@/context/ThemeContext'
 import styled from 'styled-components'
-import { PageContainer, MainContent, ItemTitle, ItemInfo } from '@/styles/styledComponents'
+import { PageContainer, MainContent, ItemTitle, ItemInfo, ArrowBackIcon } from '@/styles/styledComponents'
 import Header from './header'
 import Footer from './footer'
 import FormContainer from '@/components/FormContainer'
+import Link from 'next/link'
 
 const RadioContainer = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const RadioButton = styled.label`
   justify-content: center;
   input {
     margin-left: 10px;
-    width: 15px;   
+    width: 15px;
     height: 15px;
   }
 `
@@ -48,6 +49,9 @@ const Settings = () => {
     <PageContainer>
       <Header />
       <MainContent>
+        <Link href="/">
+          <ArrowBackIcon />
+        </Link>
         <FormContainer>
           <SectionTitle>Theme</SectionTitle>
           <RadioContainer>
@@ -64,8 +68,8 @@ const Settings = () => {
         <FormContainer>
           <SectionTitle>About This Page</SectionTitle>
           <SectionInfo>
-            This is admin panel for VHS rental shop. Admin can add, edit, delete and view all details of a movie. Depending on his/her
-            preferences, page theme can be changed (light or dark). 
+            This is admin panel for VHS rental shop. Admin can add, edit, delete and view all details of a movie.
+            Depending on his/her preferences, page theme can be changed (light or dark).
           </SectionInfo>
         </FormContainer>
         <FormContainer>

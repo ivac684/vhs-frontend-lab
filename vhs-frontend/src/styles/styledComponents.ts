@@ -4,6 +4,7 @@ import { Search } from '@styled-icons/material/Search';
 import { motion } from 'framer-motion';
 import { Delete } from '@styled-icons/material/Delete';
 import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt'
+import {ArrowBack} from '@styled-icons/material-outlined/ArrowBack';
 
 export const PageContainer = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ export const ItemInfo = styled.p`
 `;
 export const ItemGenre = styled(ItemInfo)`
   margin-right: 15px;
-  color: var(--primary-variant);
+  color: var(--on-surface-lv2);
 `;
 
 export const ItemDuration = styled(ItemInfo)`
@@ -36,7 +37,7 @@ font-style: italic;
 
 export const ItemDescription = styled(ItemInfo)`
   margin-right: 15px;
-  color: var(--on-surface-lv2);
+  color: var(--on-surface-lv1);
   opacity: 0;
   overflow: hidden;
   display: -webkit-box;
@@ -50,7 +51,7 @@ export const Item = styled.article`
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid var(--surface-1);
-  background-color: var(--on-surface-lv3);
+  background-color: var(--secondary-default);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -99,8 +100,9 @@ export const ItemDetails = styled.div`
 
 export const ItemTitle = styled.h3`
   font-size: 16px;
-  color: var(--on-surface-lv2);
+  color: var(--on-surface-lv1);
   cursor: pointer;
+  bakground-color: var(--surface-1);
 `;
 
 
@@ -114,13 +116,13 @@ export const ItemsRow = styled.div`
 
 export const ItemYear = styled(ItemInfo)`
 margin-left: 5px;
-color: var(--primary-highlight);
+color: var(--on-surface-lv1);
 cursor: pointer;
 `;
 
 export const ItemAvailability = styled(ItemInfo)`
-  color: var(--success);
- bottom: 10px;
+  color: var(--on-surface-lv3);
+  bottom: 10px;
   left: 10px;
 `;
 
@@ -171,6 +173,14 @@ export const FlexContainer = styled.div`
   z-index: 1;
 `;
 
+export const ArrowBackIcon = styled(ArrowBack)`
+cursor: pointer;
+  color: var(--on-primary);
+  width: 30px; 
+  height: 30px;
+
+`
+
 export const SettingsIcon = styled(Settings)` 
   cursor: pointer;
   color: var(--on-primary);
@@ -186,14 +196,14 @@ export const SearchIcon = styled(Search)`
 `;
 export const EditIcon = styled(EditAlt)` 
   cursor: pointer;
-  color: var(--primary-variant);
+  color: var(--on-surface-lv2);
   margin-right: 10px;
   width: 25px; 
   height: 25px;
 `;
 export const DeleteIcon = styled(Delete)` 
   cursor: pointer;
-  color: var(--primary-variant);
+  color: var(--on-surface-lv2);
   width: 25px; 
   height: 25px;
 `;
@@ -220,7 +230,7 @@ export const GenreAddButton = styled.button`
   padding: 7px 30px;
   border: none;
   background-color: var(--on-primary);
-  color: var(--on-surface-lv2);
+  color: var(--on-surface-lv1);
   font-size: 14px;
   cursor: pointer;
 
@@ -254,7 +264,7 @@ export const GenreDropdown = styled.div`
 export const GenreItem = styled.div`
   padding: 10px 18px;
   cursor: pointer;
-  color: var(--on-surface-lv2);
+  color: var(--on-surface-lv1);
   &:hover {
     background-color: var(--surface-2);
   }
@@ -262,7 +272,7 @@ export const GenreItem = styled.div`
 
 export const FormHeader = styled.h1`
   font-size: 20px;
-  color: var(--on-surface-lv2);
+  color: var(--on-surface-lv1);
   margin-bottom: 20px;
    text-align: center; 
 `;
@@ -275,13 +285,14 @@ export const Input = styled.input`
   width: 100%;
   padding: 10px;
   border: 1px solid var(--surface-2);
+  background-color: var(--secondary-variant);
   border-radius: 4px;
   font-size: 16px;
-  color: var(--on-surface-lv1);
+  color: var(--secondary-highlight);
   margin-top: 10px;
 
   &:focus {
-    border-color: var(--primary-variant);
+    border-color: var(--on-surface-lv2);
     outline: none;
   }
 `;
@@ -292,12 +303,13 @@ export const TextArea = styled.textarea`
   border: 1px solid var(--surface-2);
   border-radius: 4px;
   font-size: 16px;
-  color: var(--on-surface-lv1);
+  color: var(--secondary-highlight);
+  background-color: var(--secondary-variant);
   resize: vertical;
   margin-top: 10px;
 
   &:focus {
-    border-color: var(--primary-variant);
+    border-color: var(--on-surface-lv2);
     outline: none;
   }
 `;
@@ -307,8 +319,8 @@ export const SubmitButton = styled.button`
   padding: 10px;
   border: none;
   border-radius: 4px;
-  background-color: var(--success);
-  color: var(--primary-variant);
+  background-color: var(--on-surface-lv3);
+  color: var(--on-surface-lv1);
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -321,7 +333,7 @@ export const SubmitButton = styled.button`
 `;
 
 export const ErrorMessage = styled.p`
-  color: var(--error);
+  color: var(--genre);
   font-size: 14px;
   margin-top: 10px;
 `;
@@ -369,13 +381,13 @@ export const DetailTitle = styled.h1`
 
 export const DetailInfo = styled.p`
   font-size: 16px;
-  color: var(--live);
+  color: var(--on-surface-lv5);
   margin-top: 15px;
 `;
 
 export const DetailGenre = styled.p`
   font-size: 16px;
-  color: var(--error);
+  color: var(--genre);
   padding-right: 10px;
   margin-top: 10px;
 `;
@@ -395,7 +407,7 @@ export const DetailYear = styled.span`
 
 export const DetailAvailability = styled.p`
   font-size: 20px;
-  color: var(--success);
+  color: var(--on-surface-lv3);
   margin: 0;
   text-align: center;
   align-self: center;
@@ -452,6 +464,7 @@ export const ActionButton = styled.button`
 
 export const EditButton = styled(ActionButton)`
   background-color: var(--edit);
+  
   &:hover {
     background-color: var(--on-secondary);
   }
@@ -459,7 +472,7 @@ export const EditButton = styled(ActionButton)`
 export const DeleteButton = styled(ActionButton)`
   background-color: var(--delete);
   &:hover {
-    background-color: var(--on-surface-lv3);
+    background-color: var(--secondary-default);
   }
 `
 export const BackButton = styled.a`
@@ -473,9 +486,10 @@ export const BackButton = styled.a`
   transition: background-color 0.3s ease;
   
   &:hover {
-    background-color: var(--primary-variant);
+    background-color: var(--on-surface-lv2);
   }
 `;
+
 export const RentButtonContainer = styled.div`
 display: flex;
 `

@@ -25,6 +25,7 @@ import {
   RentButtonContainer,
   EditButton,
   DeleteButton,
+  ArrowBackIcon,
 } from '@/styles/styledComponents'
 import Header from '@/pages/header'
 import Footer from '@/pages/footer'
@@ -53,11 +54,14 @@ const MovieDetails = () => {
       <Header />
       <MainContent>
         <Link href="/">
-          <BackButton>GO BACK</BackButton>
+          <ArrowBackIcon />
         </Link>
         <DetailsContainer>
           <DetailImageContainer>
-            <DetailImage src="/placeholder.png" alt={movie.title} />
+          <DetailImage
+                src={movie.thumbnail ? `http://localhost:3000/${movie.thumbnail}` : '/placeholder.png'}
+                alt={movie.title}
+              />
           </DetailImageContainer>
           <div>
             <DetailContent>
@@ -80,9 +84,9 @@ const MovieDetails = () => {
                 </RentalRowContainer>
               </RentalInfo>
               <ButtonContainer>
-              <Link href={`/movies/edit-movie/${movie.id}`}>
-                <EditButton>EDIT</EditButton>
-              </Link>
+                <Link href={`/edit-movie/${movie.id}`}>
+                  <EditButton>EDIT</EditButton>
+                </Link>
                 <DeleteButton>DELETE</DeleteButton>
               </ButtonContainer>
             </RentButtonContainer>

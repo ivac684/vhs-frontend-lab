@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { addMovie } from '@/utils/addMovie'
 import {
+  ArrowBackIcon,
   ErrorMessage,
   FormField,
   FormHeader,
   Input,
-  ItemTitle,
   MainContent,
   PageContainer,
   SubmitButton,
@@ -48,7 +48,7 @@ export default function AddMovie() {
       <Header />
       <MainContent>
         <Link href="/">
-          <ItemTitle>GO BACK</ItemTitle>
+          <ArrowBackIcon />
         </Link>
         <FormContainer>
           <FormHeader>ADD NEW MOVIE</FormHeader>
