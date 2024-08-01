@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useThemeContext } from '@/context/ThemeContext'
+import { useRouter } from 'next/router'
 import {
   FlexContainer,
   HeaderContainer,
@@ -17,8 +17,8 @@ interface HeaderProps {
 }
 
 const Header = ({ setSearchQuery }: HeaderProps) => {
-  const { setIsDark, isDark } = useThemeContext()
   const [searchVisible, setSearchVisible] = useState(false)
+  const router = useRouter()
 
   const toggleSearch = () => {
     setSearchVisible(!searchVisible)
@@ -29,10 +29,13 @@ const Header = ({ setSearchQuery }: HeaderProps) => {
       setSearchQuery(event.target.value)
     }
   }
+
+  const isHomePage = router.pathname === '/'
+
   return (
     <HeaderContainer>
       <FlexContainer>
-        <SearchIcon onClick={toggleSearch} />
+        {isHomePage && <SearchIcon onClick={toggleSearch} />}
         {searchVisible && (
           <SearchInput
             as={motion.input}
@@ -57,4 +60,4 @@ const Header = ({ setSearchQuery }: HeaderProps) => {
   )
 }
 
-export default Header
+export default Header;
