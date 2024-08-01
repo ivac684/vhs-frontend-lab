@@ -8,12 +8,14 @@ import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt'
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
 `;
 
 export const MainContent = styled.main`
   flex: 1; 
   padding: 20px;
+  margin-bottom: 70px;
 `;
 
 export const Item = styled.article`
@@ -104,8 +106,10 @@ export const FooterContainer = styled.footer`
   background-color: var(--surface-1);
   padding: 24px 16px;
   width: 100%;
-  bottom: 0;
   position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 `;
 export const FooterText = styled.div`
   display: flex;
@@ -121,10 +125,11 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   background: var(--surface-1);
-  height: 90px;
+  min-height: 90px;
   min-width: 100vw;
   padding: 0 20px; 
   position: relative; 
+  top: 0;
 `;
 
 export const ImageContainer = styled.div`

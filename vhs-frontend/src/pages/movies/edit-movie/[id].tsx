@@ -16,6 +16,7 @@ import FormContainer from '@/components/FormContainer'
 import Link from 'next/link'
 import Header from '@/pages/header'
 import { handleChange } from '@/utils/handleChangeForm'
+import Footer from '@/pages/footer'
 
 export default function EditMovie() {
   const [form, setForm] = useState<VHSForm>({
@@ -165,6 +166,7 @@ export default function EditMovie() {
           </form>
         </FormContainer>
       </MainContent>
+      <Footer/>
     </PageContainer>
   )
 }
