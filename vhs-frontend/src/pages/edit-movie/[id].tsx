@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import {
@@ -17,7 +17,7 @@ import FormContainer from '@/components/FormContainer';
 import Link from 'next/link';
 import Header from '@/pages/header';
 import Footer from '@/pages/footer';
-import UploadAndDisplayImage from '@/components/uploadImage';
+import ImageUploader from '@/components/ImageUploader';
 
 type VHSForm = {
   title: string;
@@ -189,7 +189,7 @@ const EditMovie = () => {
             </FormField>
             <FormField>
               <ItemTitle>Thumbnail</ItemTitle>
-              <UploadAndDisplayImage onImageSelect={handleImageSelect} />
+              <ImageUploader onImageSelect={handleImageSelect} initialImage={form.thumbnail} />
             </FormField>
             <SubmitButton type="submit">SAVE</SubmitButton>
             {error && <ErrorMessage>{error}</ErrorMessage>}

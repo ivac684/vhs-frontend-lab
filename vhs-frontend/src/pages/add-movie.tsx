@@ -7,6 +7,7 @@ import {
   FormField,
   FormHeader,
   Input,
+  ItemTitle,
   MainContent,
   PageContainer,
   SubmitButton,
@@ -17,6 +18,7 @@ import FormContainer from '@/components/FormContainer'
 import { handleChange } from '@/utils/handleChangeForm'
 import Header from './header'
 import Footer from './footer'
+import ImageUploader from '@/components/ImageUploader'
 
 export default function AddMovie() {
   const [form, setForm] = useState<VHSForm>({
@@ -35,12 +37,29 @@ export default function AddMovie() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (
+      !form.title ||
+      !form.description ||
+      !form.genre ||
+      form.duration <= 0 ||
+      form.releasedAt <= 0 ||
+      form.rentalPrice <= 0 ||
+      form.rentalDuration <= 0 ||
+      form.quantity <= 0
+    ) {
+      setError('All fields except thumbnail are required and must be valid.');
+      return;
+    }
     try {
       await addMovie(form)
       router.push('/')
     } catch {
       setError('Failed to add movie')
     }
+  }
+
+  function handleImageSelect(file: File | null): void {
+    throw new Error('Function not implemented.')
   }
 
   return (
@@ -133,13 +152,8 @@ export default function AddMovie() {
               />
             </FormField>
             <FormField>
-              <Input
-                type="text"
-                name="thumbnail"
-                value={form.thumbnail}
-                onChange={e => handleChange({ e, setForm })}
-                placeholder="Thumbnail URL (optional)"
-              />
+              <ItemTitle>Thumbnail</ItemTitle>
+              <ImageUploader onImageSelect={handleImageSelect} initialImage={form.thumbnail} />
             </FormField>
             <SubmitButton type="submit">
               <b>SAVE</b>

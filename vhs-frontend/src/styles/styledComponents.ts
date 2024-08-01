@@ -346,6 +346,7 @@ export const DetailsContainer = styled.div`
 
 export const DetailImageContainer = styled.div`
   min-width: 55%;
+  max-width: 55%;
   margin-right: 20px;
   display: flex;
   justify-content: center;
