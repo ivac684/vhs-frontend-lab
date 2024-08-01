@@ -83,7 +83,9 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
             </ItemImageContainer>
             <ItemDetails>
               <ItemsRow>
+              <Link href={`/movies/movie-details/${item.id}`}>
                 <ItemTitle>{item.title}</ItemTitle> <ItemYear>({item.releasedAt})</ItemYear>
+              </Link>
               </ItemsRow>
               <ItemsRow>
                 <ItemGenre>

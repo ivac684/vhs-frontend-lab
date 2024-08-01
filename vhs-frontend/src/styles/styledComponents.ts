@@ -8,13 +8,12 @@ import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt'
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
+  height: 100vh;
 `;
 
 export const MainContent = styled.main`
   flex: 1; 
   padding: 20px;
-  /* Add additional styles as needed */
 `;
 
 export const Item = styled.article`
@@ -104,19 +103,10 @@ export const ItemAvailability = styled(ItemInfo)`
 export const FooterContainer = styled.footer`
   background-color: var(--surface-1);
   padding: 24px 16px;
-  height: 90px;
-  position: relative;
-  bottom: 0;
   width: 100%;
-  margin-top: 20px;
+  bottom: 0;
+  position: absolute;
 `;
-
-export const FooterContent = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const FooterText = styled.div`
   display: flex;
   justify-content: center;
@@ -257,6 +247,7 @@ export const Input = styled.input`
   border-radius: 4px;
   font-size: 16px;
   color: var(--on-surface-lv1);
+  margin-top: 10px;
 
   &:focus {
     border-color: var(--primary-variant);
@@ -272,6 +263,7 @@ export const TextArea = styled.textarea`
   font-size: 16px;
   color: var(--on-surface-lv1);
   resize: vertical;
+  margin-top: 10px;
 
   &:focus {
     border-color: var(--primary-variant);
@@ -302,3 +294,157 @@ export const ErrorMessage = styled.p`
   font-size: 14px;
   margin-top: 10px;
 `;
+
+export const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+`;
+
+export const DetailImageContainer = styled.div`
+  min-width: 55%;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: black; 
+  height: 100%; 
+  &:hover img {
+    transform: scale(0.9);
+    cursor: pointer;
+  }
+`;
+
+export const DetailImage = styled.img`
+  width: 100%; 
+  transition: transform 0.3s ease;
+  object-fit: cover;
+`;
+
+export const DetailContent = styled.div`
+min-width: 100%;
+  margin-top: 30px;
+  flex: 1;
+  padding: 20px;
+  background-color: black;
+`;
+
+export const DetailTitle = styled.h1`
+  font-size: 24px;
+  color: var(--on-primary);
+  margin: 0;
+`;
+
+export const DetailInfo = styled.p`
+  font-size: 16px;
+  color: var(--live);
+  margin-top: 15px;
+`;
+
+export const DetailGenre = styled.p`
+  font-size: 16px;
+  color: var(--error);
+  padding-right: 10px;
+  margin-top: 10px;
+`;
+
+export const DetailDuration = styled.p`
+  font-size: 16px;
+  color: var(--primary-highlight);
+  margin-top: 10px;
+  
+`;
+
+export const DetailYear = styled.span`
+  font-size: 16px;
+  color: var(--primary-highlight);
+  margin-left: 10px;
+`;
+
+export const DetailAvailability = styled.p`
+  font-size: 20px;
+  color: var(--success);
+  margin: 0;
+  text-align: center;
+  align-self: center;
+`;
+
+export const DetailRow = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const RentalInfo = styled.div`
+   margin-top: 20px;
+  padding: 15px;
+  background-color: var(--on-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px; 
+  width: 80%;
+`;
+
+export const RentalRow = styled.div`
+  font-size: 16px;
+  color: var(--primary-highlight);
+  margin: 0;
+`;
+
+export const RentalRowContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-top: 20px;
+`;
+
+export const ActionButton = styled.button`
+  background-color: var(--primary-default);
+  color: var(--primary-highlight);
+  width: 100px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  clip-path: polygon(0 0, 87% 0, 100% 100%, 11% 100%);
+   transition: background-color 0.3s ease;
+`;
+
+export const EditButton = styled(ActionButton)`
+  background-color: var(--edit);
+  &:hover {
+    background-color: var(--on-secondary);
+  }
+`
+export const DeleteButton = styled(ActionButton)`
+  background-color: var(--delete);
+  &:hover {
+    background-color: var(--on-surface-lv3);
+  }
+`
+export const BackButton = styled.a`
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 7px 20px;
+  background-color: var(--on-primary);
+  text-decoration: none;
+  cursor: pointer;
+  clip-path: polygon(0 0, 87% 0, 100% 100%, 11% 100%);
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: var(--primary-variant);
+  }
+`;
+export const RentButtonContainer = styled.div`
+display: flex;
+`

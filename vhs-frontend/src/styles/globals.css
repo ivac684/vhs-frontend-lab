@@ -57,12 +57,14 @@
     --on-surface-lv2: #f8d1a4;
     --on-surface-lv3: #792204;
     --on-surface-lv4: #9e866b;
+    --delete: rgb(202, 0, 0);
+    --edit: rgb(2, 113, 2);
 
     --error: #F26666;
     --alert: #ECCA51;
     --success: #27a957;
 
-    --live: #F14B4B;
+    --live: #c18e55;
 
     --elevation-1: #182215;
     --elevation-2: #2B2E38;

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { PageContainer } from '@/styles/styledComponents'
 import Layout from '@/components/Layout'
 import Catalogue from './catalogue'
+import Footer from './footer'
 
 interface HomeProps {
   searchQuery: string
@@ -19,6 +20,7 @@ export default function Home({ searchQuery }: HomeProps) {
         <Layout>
           <Catalogue searchQuery={searchQuery} />
         </Layout>
+        <Footer />
         </PageContainer>
     </>
   )

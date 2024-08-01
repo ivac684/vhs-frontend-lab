@@ -11,18 +11,18 @@ import styled from 'styled-components'
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
+  flex: 1;
   justify-content: center;
   max-width: 1800px;
   width: 100%;
 `;
 
 const FooterWrapper = styled.div`
-  margin-top: auto;
+ min-height: 100vh;
 `;
 
 
@@ -45,9 +45,6 @@ export const fetcher = (...args) =>
             <ContentWrapper>
               <Component {...pageProps} />
             </ContentWrapper>
-            <FooterWrapper>
-              <Footer />
-            </FooterWrapper>
           </MainContainer>
         </ThemeContextProvider>
       </SWRConfig>

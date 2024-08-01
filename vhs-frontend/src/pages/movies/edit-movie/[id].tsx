@@ -72,6 +72,7 @@ export default function EditMovie() {
           <FormHeader>EDIT MOVIE</FormHeader>
           <form onSubmit={handleSubmit}>
             <FormField>
+              <ItemTitle>Title</ItemTitle>
               <Input
                 type="text"
                 name="title"
@@ -81,6 +82,7 @@ export default function EditMovie() {
               />
             </FormField>
             <FormField>
+              <ItemTitle>Synopsis</ItemTitle>
               <TextArea
                 name="description"
                 value={form.description}
@@ -89,6 +91,7 @@ export default function EditMovie() {
               />
             </FormField>
             <FormField>
+              <ItemTitle>Genre</ItemTitle>
               <Input
                 type="text"
                 name="genre"
@@ -98,6 +101,7 @@ export default function EditMovie() {
               />
             </FormField>
             <FormField>
+              <ItemTitle>Duration</ItemTitle>
               <Input
                 type="number"
                 name="duration"
@@ -107,6 +111,7 @@ export default function EditMovie() {
               />
             </FormField>
             <FormField>
+              <ItemTitle>Released in (year)</ItemTitle>
               <Input
                 type="number"
                 name="releasedAt"
@@ -116,6 +121,7 @@ export default function EditMovie() {
               />
             </FormField>
             <FormField>
+              <ItemTitle>Rent price</ItemTitle>
               <Input
                 type="number"
                 name="rentalPrice"
@@ -125,6 +131,7 @@ export default function EditMovie() {
               />
             </FormField>
             <FormField>
+              <ItemTitle>Rent duration</ItemTitle>
               <Input
                 type="number"
                 name="rentalDuration"
@@ -134,6 +141,7 @@ export default function EditMovie() {
               />
             </FormField>
             <FormField>
+              <ItemTitle>In stock</ItemTitle>
               <Input
                 type="number"
                 name="quantity"
@@ -143,6 +151,7 @@ export default function EditMovie() {
               />
             </FormField>
             <FormField>
+              <ItemTitle>Thumbnail</ItemTitle>
               <Input
                 type="text"
                 name="thumbnail"
