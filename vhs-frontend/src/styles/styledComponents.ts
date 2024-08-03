@@ -1,24 +1,24 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Delete } from '@styled-icons/material/Delete';
-import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt'
-import {ArrowBack} from '@styled-icons/material-outlined/ArrowBack';
-
+import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt';
+import { ArrowBack } from '@styled-icons/material-outlined/ArrowBack';
 
 export const ItemInfo = styled.p`
   font-size: 14px;
   margin: 2px 0;
 `;
+
 export const ItemGenre = styled(ItemInfo)`
   margin-right: 15px;
   color: var(--on-surface-lv2);
 `;
 
 export const ItemDuration = styled(ItemInfo)`
-color: var(--on-surface-lv4);
-font-style: italic;
- display: inline; 
- white-space: nowrap;
+  color: var(--on-surface-lv4);
+  font-style: italic;
+  display: inline; 
+  white-space: nowrap;
 `;
 
 export const ItemDescription = styled(ItemInfo)`
@@ -49,7 +49,7 @@ export const Item = styled.article`
   &:hover ${ItemDuration} {
     display: none; 
   }
-     &:hover ${ItemDescription} {
+  &:hover ${ItemDescription} {
     opacity: 1; 
     transition: all 0.8s ease;
   }
@@ -88,10 +88,8 @@ export const ItemTitle = styled.h3`
   font-size: 18px;
   color: var(--on-surface-lv1);
   cursor: pointer;
-  bakground-color: var(--surface-1);
-   display: inline;
+  display: inline;
 `;
-
 
 export const ItemsRow = styled.div`
   display: flex;
@@ -100,12 +98,11 @@ export const ItemsRow = styled.div`
   margin-top: 5px;
 `;
 
-
 export const ItemYear = styled(ItemInfo)`
-margin-left: 5px;
-color: var(--on-surface-lv1);
-cursor: pointer;
- display: inline;
+  margin-left: 5px;
+  color: var(--on-surface-lv1);
+  cursor: pointer;
+  display: inline;
 `;
 
 export const ItemAvailability = styled.div<{ available: boolean }>`
@@ -122,6 +119,7 @@ export const EditIcon = styled(EditAlt)`
   width: 25px; 
   height: 25px;
 `;
+
 export const DeleteIcon = styled(Delete)` 
   cursor: pointer;
   color: var(--on-surface-lv2);
@@ -136,14 +134,13 @@ export const ArrowBackIcon = styled(ArrowBack)`
   height: 30px;
 `;
 
-
 export const IconsWrapper = styled.div`
-position: absolute;
-bottom: 0;
-right: 0;
-margin-bottom: 5px;
-margin-right: 5px;
-`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 5px;
+  margin-right: 5px;
+`;
 
 export const SearchInput = styled(motion.input)`
   width: 200px;
@@ -154,7 +151,6 @@ export const SearchInput = styled(motion.input)`
   transition: all 0.3s ease;
 `;
 
-
 export const GenreAddButton = styled.button`
   padding: 7px 30px;
   border: none;
@@ -162,8 +158,8 @@ export const GenreAddButton = styled.button`
   color: var(--on-surface-lv1);
   font-size: 14px;
   cursor: pointer;
+`;
 
-`
 export const GenreButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -184,13 +180,13 @@ export const GenreDropdown = styled.div`
 `;
 
 export const GenreButton = styled(GenreAddButton)`
- margin-left: 25px;
+  margin-left: 25px;
   margin-top: 5px;
   clip-path: polygon(14% 0, 100% 0%, 84% 100%, 0% 100%);
 `;
 
 export const AddButton = styled(GenreAddButton)`
- margin-right: 25px;
+  margin-right: 25px;
   margin-top: 5px;
   clip-path: polygon(0 0, 87% 0, 100% 100%, 11% 100%);
 `;
