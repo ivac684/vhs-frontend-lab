@@ -1,8 +1,4 @@
-// src/pages/movie-details/style.ts
-
 import styled from 'styled-components';
-import { Delete } from '@styled-icons/material/Delete';
-import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt';
 import { ArrowBack } from '@styled-icons/material-outlined/ArrowBack';
 
 export const DetailsContainer = styled.div`
@@ -43,13 +39,13 @@ export const DetailContent = styled.div`
 
 export const DetailTitle = styled.h1`
   font-size: 24px;
-  color: var(--on-primary);
+  color: #A83C19;
   margin: 0;
 `;
 
 export const DetailInfo = styled.p`
   font-size: 16px;
-  color: var(--on-surface-lv5);
+  color: #f3c796;
   margin-top: 15px;
 `;
 
@@ -62,19 +58,19 @@ export const DetailGenre = styled.p`
 
 export const DetailDuration = styled.p`
   font-size: 16px;
-  color: var(--primary-highlight);
+  color: #f3c796;
   margin-top: 10px;
 `;
 
 export const DetailYear = styled.span`
   font-size: 16px;
-  color: var(--primary-highlight);
+  color: #f3c796;
   margin-left: 10px;
 `;
 
-export const DetailAvailability = styled.p`
+export const DetailAvailability = styled.p<{ available: boolean }>`
+  color: ${({ available }) => (available ? 'var(--on-surface-lv3)' : 'var(--delete)')};
   font-size: 20px;
-  color: var(--on-surface-lv3);
   margin: 0;
   text-align: center;
   align-self: center;
@@ -100,7 +96,7 @@ export const RentalInfo = styled.div`
 export const RentalRow = styled.div`
   font-size: 16px;
   color: var(--primary-highlight);
-  margin: 0;
+ 
 `;
 
 export const RentalRowContainer = styled.div`

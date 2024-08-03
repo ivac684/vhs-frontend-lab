@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useVHSData } from '@/customHooks/useVHSdata'
+import { useVHSData } from '@/hooks/useVHSdata'
 import {
   Item,
   ItemImageContainer,
@@ -26,9 +26,10 @@ import { deleteMovie } from '@/utils/deleteMovie'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { filterMoviesByGenre } from '@/utils/handleGenreFiltering'
-import useScreenSize from '@/customHooks/useScreenSize'
+import useScreenSize from '@/hooks/useScreenSize'
 import { CircleCheck } from '@styled-icons/fa-solid/CircleCheck'
 import { CircleXmark } from '@styled-icons/fa-solid/CircleXmark'
+import { useDeleteMovie } from '@/hooks/useDeleteMovie'
 
 interface HomepageProps {
   searchQuery: string
@@ -38,26 +39,13 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
   const { data, loading, error } = useVHSData(searchQuery)
   const [dropdownVisible, setDropdownVisible] = useState(false)
   const [selectedGenre, setSelectedGenre] = useState<string | null>('All')
-  const [movieData, setMovieData] = useState(data)
-  const router = useRouter()
+  const handleDelete = useDeleteMovie()
 
   const filteredMovies = filterMoviesByGenre(data, selectedGenre)
   const isSmallScreen = useScreenSize();
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible)
-  }
-
-  const handleDelete = async (id: number) => {
-    if (window.confirm('Are you sure you want to delete this item?')) {
-      try {
-        await deleteMovie(id)
-        setMovieData(prevMovieData => prevMovieData.filter(item => item.id !== id))
-        router.reload();
-      } catch (error) {
-        console.error('Error deleting item:', error)
-      }
-    }
   }
 
   const handleGenreClick = (genre: string) => {

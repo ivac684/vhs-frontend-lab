@@ -1,17 +1,20 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useVHSData } from '@/customHooks/useVHSdata'
+import { useVHSData } from '@/hooks/useVHSdata'
 import Link from 'next/link'
 import { ArrowBackIcon } from '@/styles/styledComponents'
 import Header from '@/components/Header/header'
 import Footer from '@/components/Footer/footer'
 import { MainContent, PageContainer } from '@/components/FormStyle'
 import { DetailsContainer, DetailImageContainer, DetailImage, DetailContent, DetailRow, DetailTitle, DetailYear, DetailGenre, DetailDuration, DetailInfo, RentButtonContainer, RentalInfo, DetailAvailability, RentalRowContainer, RentalRow, ButtonContainer, EditButton, DeleteButton } from './style'
+import { useDeleteMovie } from '@/hooks/useDeleteMovie'
 
 const MovieDetails = () => {
   const router = useRouter()
   const { id } = router.query
   const { data, loading, error } = useVHSData('')
+  const handleDelete = useDeleteMovie()
+
 
   if (loading) {
     return <p>Loading...</p>
@@ -54,7 +57,7 @@ const MovieDetails = () => {
             </DetailContent>
             <RentButtonContainer>
               <RentalInfo>
-                <DetailAvailability>{movie.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}</DetailAvailability>
+              <DetailAvailability available={movie.quantity > 0}><b>{movie.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}</b></DetailAvailability>
                 <RentalRowContainer>
                   <RentalRow>Rent price: ${movie.rentalPrice}</RentalRow>
                   <RentalRow>Rent duration: {movie.rentalDuration} days</RentalRow>
@@ -65,7 +68,7 @@ const MovieDetails = () => {
                 <Link href={`/edit-movie/${movie.id}`}>
                   <EditButton>EDIT</EditButton>
                 </Link>
-                <DeleteButton>DELETE</DeleteButton>
+                <DeleteButton  onClick={() => handleDelete(movie.id)}>DELETE</DeleteButton>
               </ButtonContainer>
             </RentButtonContainer>
           </div>

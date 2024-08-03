@@ -118,7 +118,6 @@ export const ItemYear = styled(ItemInfo)`
 
 export const ItemAvailability = styled.div<{ available: boolean }>`
   color: ${({ available }) => (available ? 'var(--on-surface-lv3)' : 'var(--delete)')};
-
   font-size: 18px;
   position: relative;
 `;
