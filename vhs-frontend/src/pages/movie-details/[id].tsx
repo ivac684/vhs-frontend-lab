@@ -2,9 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useVHSData } from '@/customHooks/useVHSdata'
 import Link from 'next/link'
-import {
-  ArrowBackIcon,
-} from '@/styles/styledComponents'
+import { ArrowBackIcon } from '@/styles/styledComponents'
 import Header from '@/components/Header/header'
 import Footer from '@/components/Footer/footer'
 import { MainContent, PageContainer } from '@/components/FormStyle'

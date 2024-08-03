@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import { addMovie } from '@/utils/addMovie'
-import { ArrowBackIcon, ItemTitle } from '@/styles/styledComponents'
-import Link from 'next/link'
-import { handleChange } from '@/utils/handleChangeForm'
-import Header from '../components/Header/header'
-import Footer from '../components/Footer/footer'
-import ImageUploader from '@/components/ImageUploader'
-import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle'
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import { ArrowBackIcon, ItemTitle } from '@/styles/styledComponents';
+import Link from 'next/link';
+import Header from '../components/Header/header';
+import Footer from '../components/Footer/footer';
+import ImageUploader from '@/components/ImageUploader';
+import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle';
 
 export default function AddMovie() {
   const [form, setForm] = useState<VHSForm>({
@@ -20,12 +19,13 @@ export default function AddMovie() {
     rentalDuration: 0,
     quantity: 0,
     thumbnail: '',
-  })
-  const [error, setError] = useState<string | null>(null)
-  const router = useRouter()
+  });
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
+
     if (
       !form.title ||
       !form.description ||
@@ -39,31 +39,38 @@ export default function AddMovie() {
       setError('All fields except thumbnail are required and must be valid.');
       return;
     }
-    try {
-      await addMovie(form)
-      router.push('/')
-    } catch {
-      setError('Failed to add movie')
-    }
-  }
 
-  function handleImageSelect(file: File | null): void {
-    if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setForm(prevForm => ({
-          ...prevForm,
-          thumbnail: reader.result as string,
-        }))
-      }
-      reader.readAsDataURL(file)
-    } else {
-      setForm(prevForm => ({
-        ...prevForm,
-        thumbnail: '',
-      }))
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(form)) {
+      formData.append(key, value as string | Blob);
     }
-  }
+
+    try {
+      await axios.post('http://localhost:3000/api/vhs', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      router.push('/');
+    } catch {
+      setError('Failed to add movie');
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm(prevForm => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleImageSelect = (file: File | null) => {
+    setForm(prevForm => ({
+      ...prevForm,
+      thumbnail: file || '',
+    }));
+  };
 
   return (
     <PageContainer>
@@ -76,89 +83,90 @@ export default function AddMovie() {
           <FormHeader>ADD NEW MOVIE</FormHeader>
           <form onSubmit={handleSubmit}>
             <FormField>
-            <ItemTitle>Title</ItemTitle>
+              <ItemTitle>Title</ItemTitle>
               <Input
                 type="text"
                 name="title"
                 value={form.title}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Title"
                 required
               />
             </FormField>
             <FormField>
-            <ItemTitle>Synopsis</ItemTitle>
+              <ItemTitle>Synopsis</ItemTitle>
               <TextArea
                 name="description"
                 value={form.description}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Description"
                 required
               />
             </FormField>
             <FormField>
-            <ItemTitle>Genre</ItemTitle>
+              <ItemTitle>Genre</ItemTitle>
               <Input
                 type="text"
                 name="genre"
                 value={form.genre}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Genre"
                 required
               />
             </FormField>
             <FormField>
-            <ItemTitle>Duration</ItemTitle>
+              <ItemTitle>Duration</ItemTitle>
               <Input
                 type="number"
                 name="duration"
                 value={form.duration}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Duration (minutes)"
                 required
               />
             </FormField>
             <FormField>
-            <ItemTitle>Released in (year)</ItemTitle>
+              <ItemTitle>Released in (year)</ItemTitle>
               <Input
                 type="number"
                 name="releasedAt"
                 value={form.releasedAt}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Released Year"
                 required
               />
             </FormField>
             <FormField>
-            <ItemTitle>Rent price</ItemTitle>
+              <ItemTitle>Rent price</ItemTitle>
               <Input
                 type="number"
                 name="rentalPrice"
                 value={form.rentalPrice}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Rental Price"
                 required
               />
             </FormField>
             <FormField>
-            <ItemTitle>Rent duration</ItemTitle>
+              <ItemTitle>Rent duration</ItemTitle>
               <Input
                 type="number"
                 name="rentalDuration"
                 value={form.rentalDuration}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Rental Duration (days)"
                 required
               />
             </FormField>
             <FormField>
-            <ItemTitle>In stock</ItemTitle>
+              <ItemTitle>In stock</ItemTitle>
               <Input
                 type="number"
                 name="quantity"
                 value={form.quantity}
-                onChange={e => handleChange({ e, setForm })}
+                onChange={handleChange}
                 placeholder="Quantity"
+                required
               />
             </FormField>
             <FormField>
@@ -174,5 +182,5 @@ export default function AddMovie() {
       </MainContent>
       <Footer />
     </PageContainer>
-  )
+  );
 }

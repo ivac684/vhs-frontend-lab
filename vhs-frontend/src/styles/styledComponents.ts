@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { Delete } from '@styled-icons/material/Delete';
 import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt';
 import { ArrowBack } from '@styled-icons/material-outlined/ArrowBack';
@@ -15,12 +14,15 @@ export const ItemGenre = styled(ItemInfo)`
 `;
 
 export const ItemDuration = styled(ItemInfo)`
-  color: var(--on-surface-lv4);
+  color: var(--on-surface-lv1);
   font-style: italic;
   display: inline; 
   white-space: nowrap;
-`;
 
+  @media (max-width: 700px) {
+    display: none;
+  }
+`;
 export const ItemDescription = styled(ItemInfo)`
   margin-right: 15px;
   color: var(--on-surface-lv1);
@@ -37,7 +39,7 @@ export const Item = styled.article`
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid var(--surface-1);
-  background-color: var(--secondary-default);
+  background-color: var(--on-primary);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -52,6 +54,9 @@ export const Item = styled.article`
   &:hover ${ItemDescription} {
     opacity: 1; 
     transition: all 0.8s ease;
+  }
+  @media (min-width: 2000px) {
+    height: 200px;
   }
 `;
 
@@ -89,6 +94,12 @@ export const ItemTitle = styled.h3`
   color: var(--on-surface-lv1);
   cursor: pointer;
   display: inline;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 `;
 
 export const ItemsRow = styled.div`
@@ -107,24 +118,30 @@ export const ItemYear = styled(ItemInfo)`
 
 export const ItemAvailability = styled.div<{ available: boolean }>`
   color: ${({ available }) => (available ? 'var(--on-surface-lv3)' : 'var(--delete)')};
-  bottom: 10px;
-  left: 10px;
+
   font-size: 18px;
+  position: relative;
 `;
 
 export const EditIcon = styled(EditAlt)` 
   cursor: pointer;
   color: var(--on-surface-lv2);
   margin-right: 10px;
-  width: 25px; 
-  height: 25px;
+  width: 20px; 
+  height: 20px;
+  &:hover {
+    color: var(--on-surface-lv1);
+  }
 `;
 
 export const DeleteIcon = styled(Delete)` 
   cursor: pointer;
   color: var(--on-surface-lv2);
-  width: 25px; 
-  height: 25px;
+  width: 20px; 
+  height: 20px;
+  &:hover {
+    color: var(--on-surface-lv1);
+  }
 `;
 
 export const ArrowBackIcon = styled(ArrowBack)`
@@ -132,6 +149,10 @@ export const ArrowBackIcon = styled(ArrowBack)`
   color: var(--on-primary);
   width: 30px;
   height: 30px;
+  height: 25px;
+  &:hover {
+    color: var(--on-surface-lv4);
+  }
 `;
 
 export const IconsWrapper = styled.div`
@@ -141,16 +162,6 @@ export const IconsWrapper = styled.div`
   margin-bottom: 5px;
   margin-right: 5px;
 `;
-
-export const SearchInput = styled(motion.input)`
-  width: 200px;
-  padding: 5px 10px;
-  border: 2px solid #A83C19;
-  clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
-  outline: none;
-  transition: all 0.3s ease;
-`;
-
 export const GenreAddButton = styled.button`
   padding: 7px 30px;
   border: none;
@@ -158,6 +169,9 @@ export const GenreAddButton = styled.button`
   color: var(--on-surface-lv1);
   font-size: 14px;
   cursor: pointer;
+  &:hover {
+    background-color: var(--secondary-default);
+  }
 `;
 
 export const GenreButtonContainer = styled.div`
@@ -170,7 +184,7 @@ export const GenreButtonContainer = styled.div`
 
 export const GenreDropdown = styled.div`
   background-color: rgba(0, 0, 0, 0.9); 
-  max-height: 200px;
+  max-height: auto;
   z-index: 1000;
   margin-top: 140px;
   margin-left: 25px;
@@ -194,8 +208,8 @@ export const AddButton = styled(GenreAddButton)`
 export const GenreItem = styled.div`
   padding: 10px 18px;
   cursor: pointer;
-  color: var(--on-surface-lv1);
+  color: var(--surface-0);
   &:hover {
-    background-color: var(--secondary-variant);
+    background-color: var(--on-primary);
   }
 `;

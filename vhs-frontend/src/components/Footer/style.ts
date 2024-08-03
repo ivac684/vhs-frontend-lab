@@ -15,6 +15,6 @@ export const FooterText = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 13px;
-  color: var(--on-surface-lv1);
+  color: var(--surface-0);
   font-size: 12px;
 `;

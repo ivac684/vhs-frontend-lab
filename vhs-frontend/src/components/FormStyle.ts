@@ -15,13 +15,13 @@ export const MainContent = styled.main`
 `;
 
 export const FormContainer = styled.div`
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   margin-bottom: 10px;
+  margin-top: 20px;
   padding: 20px;
   background-color: var(--on-primary);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
 `;
 
 export const FormHeader = styled.h1`
@@ -42,7 +42,7 @@ export const Input = styled.input`
   background-color: var(--primary-highlight);
   border-radius: 4px;
   font-size: 16px;
-  color: var(--secondary-highlight);
+  color: black;
   margin-top: 10px;
 
   &:focus {
@@ -57,8 +57,8 @@ export const TextArea = styled.textarea`
   border: 1px solid var(--surface-2);
   border-radius: 4px;
   font-size: 16px;
-  color: var(--secondary-highlight);
-  background-color: var(--secondary-variant);
+  color: black;
+  background-color: var(--primary-highlight);
   resize: vertical;
   margin-top: 10px;
 
@@ -102,3 +102,15 @@ export const ArrowBackIcon = styled(ArrowBack)`
     color: var(--primary-dark);
   }
 `;
+
+export const NavButton = styled.button`
+  width: 150px;
+  padding: 10px 10px;
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+  transition: all 0.3s ease;
+  background-color: var(--on-primary);
+  color: var(--secondary-highlight);
+  cursor: pointer;
+
+`
+

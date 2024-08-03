@@ -1,7 +1,7 @@
 import React from 'react'
 import { useThemeContext } from '@/context/ThemeContext'
 import styled from 'styled-components'
-import { ItemTitle, ItemInfo, ArrowBackIcon } from '@/styles/styledComponents'
+import { ArrowBackIcon } from '@/styles/styledComponents'
 import Header from '../components/Header/header'
 import Footer from '../components/Footer/footer'
 import Link from 'next/link'
@@ -38,7 +38,6 @@ const SectionTitle = styled.h2`
   text-align: center;
   font-size: 20px;
 `;
-
 
 const SectionInfo = styled.p`
   margin-top: 20px;

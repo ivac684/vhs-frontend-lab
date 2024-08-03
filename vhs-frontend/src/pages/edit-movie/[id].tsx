@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Header from '@/components/Header/header';
 import Footer from '@/components/Footer/footer';
 import ImageUploader from '@/components/ImageUploader';
-import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle';
+import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, NavButton, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle';
 
 type VHSForm = {
   title: string;
@@ -92,10 +92,14 @@ const EditMovie = () => {
       <Header />
       <MainContent>
         <Link href="/">
-          CATALOGUE
+        <NavButton>
+          <b>GO BACK</b>
+          </NavButton>
         </Link>
         <Link href={`/movie-details/${id}`}>
-          MOVIE DETAILS
+        <NavButton>
+        <b>MOVIE DETAILS</b>
+          </NavButton>
         </Link>
         <FormContainer>
           <FormHeader>EDIT MOVIE</FormHeader>

@@ -17,12 +17,7 @@ const ContentWrapper = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
-  max-width: 1800px;
   width: 100%;
-`;
-
-const FooterWrapper = styled.div`
- min-height: 100vh;
 `;
 
 

@@ -26,6 +26,9 @@ import { deleteMovie } from '@/utils/deleteMovie'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { filterMoviesByGenre } from '@/utils/handleGenreFiltering'
+import useScreenSize from '@/customHooks/useScreenSize'
+import { CircleCheck } from '@styled-icons/fa-solid/CircleCheck'
+import { CircleXmark } from '@styled-icons/fa-solid/CircleXmark'
 
 interface HomepageProps {
   searchQuery: string
@@ -39,20 +42,24 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
   const router = useRouter()
 
   const filteredMovies = filterMoviesByGenre(data, selectedGenre)
+  const isSmallScreen = useScreenSize();
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible)
   }
 
   const handleDelete = async (id: number) => {
-    try {
-      await deleteMovie(id)
-      setMovieData(prevMovieData => prevMovieData.filter(item => item.id !== id))
-      router.reload();
-    } catch (error) {
-      console.error('Error deleting item:', error)
+    if (window.confirm('Are you sure you want to delete this item?')) {
+      try {
+        await deleteMovie(id)
+        setMovieData(prevMovieData => prevMovieData.filter(item => item.id !== id))
+        router.reload();
+      } catch (error) {
+        console.error('Error deleting item:', error)
+      }
     }
   }
+
   const handleGenreClick = (genre: string) => {
     setSelectedGenre(genre)
   }
@@ -114,7 +121,11 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
                 </Link>
               </ItemsRow>
               <ItemAvailability available={item.quantity > 0}>
-                {item.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}
+                {isSmallScreen ? (
+                  item.quantity > 0 ? <CircleCheck size="20"/> : <CircleXmark size="20" />
+                ) : (
+                  <b>{item.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}</b>
+                )}
               </ItemAvailability>
               <IconsWrapper>
                 <Link href={`/edit-movie/${item.id}`}>
@@ -130,4 +141,4 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
   )
 }
 
-export default Catalogue;
+export default Catalogue

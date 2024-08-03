@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Settings } from '@styled-icons/material/Settings'; 
 import { Search } from '@styled-icons/material/Search';
+import { motion } from 'framer-motion';
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -36,6 +37,9 @@ export const SettingsIcon = styled(Settings)`
   color: var(--on-primary);
   width: 30px;
   height: 30px;
+    &:hover {
+    color: var(--secondary-default);
+  }
 `;
 
 export const SearchIcon = styled(Search)` 
@@ -43,4 +47,16 @@ export const SearchIcon = styled(Search)`
   color: var(--on-primary);
   width: 30px;
   height: 30px;
+    &:hover {
+    color: var(--secondary-default);
+  }
+`;
+
+export const SearchInput = styled(motion.input)`
+  width: 200px;
+  padding: 5px 10px;
+  border: 2px solid #A83C19;
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+  outline: none;
+  transition: all 0.3s ease;
 `;

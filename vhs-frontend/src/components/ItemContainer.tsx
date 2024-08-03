@@ -8,7 +8,6 @@ const Container = styled.div`
   margin: 0 auto;
   margin-left: 20px;
   margin-bottom: 100px;
-  width: 100vw;
 `;
 
 const ItemContainer = ({ children }: ChildrenProps) => {

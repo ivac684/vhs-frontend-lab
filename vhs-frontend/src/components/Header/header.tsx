@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { FlexContainer, HeaderContainer, ImageContainer, SearchIcon, SettingsIcon } from './style'
-import { SearchInput } from '@/styles/styledComponents'
+import { FlexContainer, HeaderContainer, ImageContainer, SearchIcon, SettingsIcon,SearchInput } from './style'
 
 interface HeaderProps {
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>
