@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useThemeContext } from '@/context/ThemeContext';
-import { FooterContainer, FooterText } from '@/styles/styledComponents';
+import { FooterContainer, FooterText } from './style';
 
 const Footer = () => {
-  const { isDark } = useThemeContext();
 
   return (
     <FooterContainer>

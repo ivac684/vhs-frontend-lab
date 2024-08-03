@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import {
-  FormHeader,
-  FormField,
-  Input,
-  TextArea,
-  SubmitButton,
-  ErrorMessage,
-  PageContainer,
-  MainContent,
-  ItemTitle,
-  ArrowBackIcon,
-} from '../../styles/styledComponents';
-import FormContainer from '@/components/FormContainer';
+import {ItemTitle, ArrowBackIcon } from '../../styles/styledComponents';
 import Link from 'next/link';
-import Header from '@/pages/header';
-import Footer from '@/pages/footer';
+import Header from '@/components/Header/header';
+import Footer from '@/components/Footer/footer';
 import ImageUploader from '@/components/ImageUploader';
+import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle';
 
 type VHSForm = {
   title: string;

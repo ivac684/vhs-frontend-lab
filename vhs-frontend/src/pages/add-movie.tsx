@@ -1,24 +1,13 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { addMovie } from '@/utils/addMovie'
-import {
-  ArrowBackIcon,
-  ErrorMessage,
-  FormField,
-  FormHeader,
-  Input,
-  ItemTitle,
-  MainContent,
-  PageContainer,
-  SubmitButton,
-  TextArea,
-} from '@/styles/styledComponents'
+import { ArrowBackIcon, ItemTitle } from '@/styles/styledComponents'
 import Link from 'next/link'
-import FormContainer from '@/components/FormContainer'
 import { handleChange } from '@/utils/handleChangeForm'
-import Header from './header'
-import Footer from './footer'
+import Header from '../components/Header/header'
+import Footer from '../components/Footer/footer'
 import ImageUploader from '@/components/ImageUploader'
+import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle'
 
 export default function AddMovie() {
   const [form, setForm] = useState<VHSForm>({
@@ -45,7 +34,7 @@ export default function AddMovie() {
       form.releasedAt <= 0 ||
       form.rentalPrice <= 0 ||
       form.rentalDuration <= 0 ||
-      form.quantity <= 0
+      form.quantity < 0
     ) {
       setError('All fields except thumbnail are required and must be valid.');
       return;
@@ -59,7 +48,21 @@ export default function AddMovie() {
   }
 
   function handleImageSelect(file: File | null): void {
-    throw new Error('Function not implemented.')
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setForm(prevForm => ({
+          ...prevForm,
+          thumbnail: reader.result as string,
+        }))
+      }
+      reader.readAsDataURL(file)
+    } else {
+      setForm(prevForm => ({
+        ...prevForm,
+        thumbnail: '',
+      }))
+    }
   }
 
   return (
@@ -73,6 +76,7 @@ export default function AddMovie() {
           <FormHeader>ADD NEW MOVIE</FormHeader>
           <form onSubmit={handleSubmit}>
             <FormField>
+            <ItemTitle>Title</ItemTitle>
               <Input
                 type="text"
                 name="title"
@@ -83,6 +87,7 @@ export default function AddMovie() {
               />
             </FormField>
             <FormField>
+            <ItemTitle>Synopsis</ItemTitle>
               <TextArea
                 name="description"
                 value={form.description}
@@ -92,6 +97,7 @@ export default function AddMovie() {
               />
             </FormField>
             <FormField>
+            <ItemTitle>Genre</ItemTitle>
               <Input
                 type="text"
                 name="genre"
@@ -102,6 +108,7 @@ export default function AddMovie() {
               />
             </FormField>
             <FormField>
+            <ItemTitle>Duration</ItemTitle>
               <Input
                 type="number"
                 name="duration"
@@ -112,6 +119,7 @@ export default function AddMovie() {
               />
             </FormField>
             <FormField>
+            <ItemTitle>Released in (year)</ItemTitle>
               <Input
                 type="number"
                 name="releasedAt"
@@ -122,6 +130,7 @@ export default function AddMovie() {
               />
             </FormField>
             <FormField>
+            <ItemTitle>Rent price</ItemTitle>
               <Input
                 type="number"
                 name="rentalPrice"
@@ -132,6 +141,7 @@ export default function AddMovie() {
               />
             </FormField>
             <FormField>
+            <ItemTitle>Rent duration</ItemTitle>
               <Input
                 type="number"
                 name="rentalDuration"
@@ -142,13 +152,13 @@ export default function AddMovie() {
               />
             </FormField>
             <FormField>
+            <ItemTitle>In stock</ItemTitle>
               <Input
                 type="number"
                 name="quantity"
                 value={form.quantity}
                 onChange={e => handleChange({ e, setForm })}
                 placeholder="Quantity"
-                required
               />
             </FormField>
             <FormField>

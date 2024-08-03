@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '@/pages/header';
+import Header from '@/components/Header/header';
 import { ChildrenProps } from '@/types/ChildrenProps';
 
 const Layout = ({ children }: ChildrenProps) => {

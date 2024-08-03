@@ -3,32 +3,12 @@ import { useRouter } from 'next/router'
 import { useVHSData } from '@/customHooks/useVHSdata'
 import Link from 'next/link'
 import {
-  PageContainer,
-  MainContent,
-  BackButton,
-  DetailAvailability,
-  DetailContent,
-  DetailDuration,
-  DetailGenre,
-  DetailImage,
-  DetailImageContainer,
-  DetailInfo,
-  DetailRow,
-  DetailsContainer,
-  DetailTitle,
-  DetailYear,
-  RentalInfo,
-  RentalRow,
-  RentalRowContainer,
-  ButtonContainer,
-  ActionButton,
-  RentButtonContainer,
-  EditButton,
-  DeleteButton,
   ArrowBackIcon,
 } from '@/styles/styledComponents'
-import Header from '@/pages/header'
-import Footer from '@/pages/footer'
+import Header from '@/components/Header/header'
+import Footer from '@/components/Footer/footer'
+import { MainContent, PageContainer } from '@/components/FormStyle'
+import { DetailsContainer, DetailImageContainer, DetailImage, DetailContent, DetailRow, DetailTitle, DetailYear, DetailGenre, DetailDuration, DetailInfo, RentButtonContainer, RentalInfo, DetailAvailability, RentalRowContainer, RentalRow, ButtonContainer, EditButton, DeleteButton } from './style'
 
 const MovieDetails = () => {
   const router = useRouter()
@@ -98,4 +78,4 @@ const MovieDetails = () => {
   )
 }
 
-export default MovieDetails
+export default MovieDetails;

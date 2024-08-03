@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import {
-  FlexContainer,
-  HeaderContainer,
-  ImageContainer,
-  SearchIcon,
-  SettingsIcon,
-  SearchInput,
-} from '@/styles/styledComponents'
+
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { FlexContainer, HeaderContainer, ImageContainer, SearchIcon, SettingsIcon } from './style'
+import { SearchInput } from '@/styles/styledComponents'
 
 interface HeaderProps {
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>

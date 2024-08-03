@@ -1,23 +1,9 @@
 import styled from 'styled-components';
-import { Settings } from '@styled-icons/material/Settings'; 
-import { Search } from '@styled-icons/material/Search';
 import { motion } from 'framer-motion';
 import { Delete } from '@styled-icons/material/Delete';
 import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt'
 import {ArrowBack} from '@styled-icons/material-outlined/ArrowBack';
 
-export const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  position: relative;
-`;
-
-export const MainContent = styled.main`
-  flex: 1; 
-  padding: 20px;
-  margin-bottom: 70px;
-`;
 
 export const ItemInfo = styled.p`
   font-size: 14px;
@@ -99,10 +85,11 @@ export const ItemDetails = styled.div`
 `;
 
 export const ItemTitle = styled.h3`
-  font-size: 16px;
+  font-size: 18px;
   color: var(--on-surface-lv1);
   cursor: pointer;
   bakground-color: var(--surface-1);
+   display: inline;
 `;
 
 
@@ -118,82 +105,16 @@ export const ItemYear = styled(ItemInfo)`
 margin-left: 5px;
 color: var(--on-surface-lv1);
 cursor: pointer;
+ display: inline;
 `;
 
-export const ItemAvailability = styled(ItemInfo)`
-  color: var(--on-surface-lv3);
+export const ItemAvailability = styled.div<{ available: boolean }>`
+  color: ${({ available }) => (available ? 'var(--on-surface-lv3)' : 'var(--delete)')};
   bottom: 10px;
   left: 10px;
+  font-size: 18px;
 `;
 
-export const FooterContainer = styled.footer`
-  background-color: var(--surface-1);
-  padding: 24px 16px;
-  width: 100%;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-`;
-export const FooterText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 13px;
-  color: var(--on-surface-lv1);
-  font-size: 12px;
-`;
-
-export const HeaderContainer = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--surface-1);
-  min-height: 90px;
-  min-width: 100vw;
-  padding: 0 20px; 
-  position: relative; 
-  top: 0;
-`;
-
-export const ImageContainer = styled.div`
-  position: absolute; 
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 170px;
-  height: 80px; 
-`;
-
-export const FlexContainer = styled.div`
-  display: flex;
-  align-items: center;
-  z-index: 1;
-`;
-
-export const ArrowBackIcon = styled(ArrowBack)`
-cursor: pointer;
-  color: var(--on-primary);
-  width: 30px; 
-  height: 30px;
-
-`
-
-export const SettingsIcon = styled(Settings)` 
-  cursor: pointer;
-  color: var(--on-primary);
-  width: 30px; 
-  height: 30px;
-`;
-
-export const SearchIcon = styled(Search)` 
-  cursor: pointer;
-  color: var(--on-primary);
-  width: 30px; 
-  height: 30px;
-`;
 export const EditIcon = styled(EditAlt)` 
   cursor: pointer;
   color: var(--on-surface-lv2);
@@ -207,6 +128,14 @@ export const DeleteIcon = styled(Delete)`
   width: 25px; 
   height: 25px;
 `;
+
+export const ArrowBackIcon = styled(ArrowBack)`
+  cursor: pointer;
+  color: var(--on-primary);
+  width: 30px;
+  height: 30px;
+`;
+
 
 export const IconsWrapper = styled.div`
 position: absolute;
@@ -274,228 +203,3 @@ export const GenreItem = styled.div`
     background-color: var(--secondary-variant);
   }
 `;
-
-export const FormHeader = styled.h1`
-  font-size: 20px;
-  color: var(--on-surface-lv1);
-  margin-bottom: 20px;
-   text-align: center; 
-`;
-
-export const FormField = styled.div`
-  margin-bottom: 15px;
-`;
-
-export const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--surface-2);
-  background-color: var(--secondary-variant);
-  border-radius: 4px;
-  font-size: 16px;
-  color: var(--secondary-highlight);
-  margin-top: 10px;
-
-  &:focus {
-    border-color: var(--on-surface-lv2);
-    outline: none;
-  }
-`;
-
-export const TextArea = styled.textarea`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--surface-2);
-  border-radius: 4px;
-  font-size: 16px;
-  color: var(--secondary-highlight);
-  background-color: var(--secondary-variant);
-  resize: vertical;
-  margin-top: 10px;
-
-  &:focus {
-    border-color: var(--on-surface-lv2);
-    outline: none;
-  }
-`;
-
-export const SubmitButton = styled.button`
-  width: 12%;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: var(--on-surface-lv3);
-  color: var(--on-surface-lv1);
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  align-items: center;
-   display: block;
-   margin: auto;
-  &:hover {
-    background-color: var(--primary-default);
-  }
-`;
-
-export const ErrorMessage = styled.p`
-  color: var(--genre);
-  font-size: 14px;
-  margin-top: 10px;
-`;
-
-export const DetailsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-`;
-
-export const DetailImageContainer = styled.div`
-  min-width: 55%;
-  max-width: 55%;
-  margin-right: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-color: black; 
-  height: 100%; 
-  &:hover img {
-    transform: scale(0.9);
-    cursor: pointer;
-  }
-`;
-
-export const DetailImage = styled.img`
-  width: 100%; 
-  transition: transform 0.3s ease;
-  object-fit: cover;
-`;
-
-export const DetailContent = styled.div`
-min-width: 100%;
-  margin-top: 30px;
-  flex: 1;
-  padding: 20px;
-  background-color: black;
-`;
-
-export const DetailTitle = styled.h1`
-  font-size: 24px;
-  color: var(--on-primary);
-  margin: 0;
-`;
-
-export const DetailInfo = styled.p`
-  font-size: 16px;
-  color: var(--on-surface-lv5);
-  margin-top: 15px;
-`;
-
-export const DetailGenre = styled.p`
-  font-size: 16px;
-  color: var(--genre);
-  padding-right: 10px;
-  margin-top: 10px;
-`;
-
-export const DetailDuration = styled.p`
-  font-size: 16px;
-  color: var(--primary-highlight);
-  margin-top: 10px;
-  
-`;
-
-export const DetailYear = styled.span`
-  font-size: 16px;
-  color: var(--primary-highlight);
-  margin-left: 10px;
-`;
-
-export const DetailAvailability = styled.p`
-  font-size: 20px;
-  color: var(--on-surface-lv3);
-  margin: 0;
-  text-align: center;
-  align-self: center;
-`;
-
-export const DetailRow = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const RentalInfo = styled.div`
-   margin-top: 20px;
-  padding: 15px;
-  background-color: var(--on-primary);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100px; 
-  width: 80%;
-`;
-
-export const RentalRow = styled.div`
-  font-size: 16px;
-  color: var(--primary-highlight);
-  margin: 0;
-`;
-
-export const RentalRowContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  margin-top: 20px;
-`;
-
-export const ActionButton = styled.button`
-  background-color: var(--primary-default);
-  color: var(--primary-highlight);
-  width: 100px;
-  height: 30px;
-  border: none;
-  cursor: pointer;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  clip-path: polygon(0 0, 87% 0, 100% 100%, 11% 100%);
-   transition: background-color 0.3s ease;
-`;
-
-export const EditButton = styled(ActionButton)`
-  background-color: var(--edit);
-  
-  &:hover {
-    background-color: var(--on-secondary);
-  }
-`
-export const DeleteButton = styled(ActionButton)`
-  background-color: var(--delete);
-  &:hover {
-    background-color: var(--secondary-default);
-  }
-`
-export const BackButton = styled.a`
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 7px 20px;
-  background-color: var(--on-primary);
-  text-decoration: none;
-  cursor: pointer;
-  clip-path: polygon(0 0, 87% 0, 100% 100%, 11% 100%);
-  transition: background-color 0.3s ease;
-  
-  &:hover {
-    background-color: var(--on-surface-lv2);
-  }
-`;
-
-export const RentButtonContainer = styled.div`
-display: flex;
-`

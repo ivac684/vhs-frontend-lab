@@ -113,7 +113,9 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
                   <ItemDescription>{item.description}...</ItemDescription>
                 </Link>
               </ItemsRow>
-              <ItemAvailability>{item.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}</ItemAvailability>
+              <ItemAvailability available={item.quantity > 0}>
+                {item.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}
+              </ItemAvailability>
               <IconsWrapper>
                 <Link href={`/edit-movie/${item.id}`}>
                   <EditIcon />
@@ -128,4 +130,4 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
   )
 }
 
-export default Catalogue
+export default Catalogue;

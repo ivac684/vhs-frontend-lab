@@ -4,8 +4,8 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 import { useState } from 'react'
-import Header from './header'
-import Footer from './footer'
+import Header from '../components/Header/header'
+import Footer from '../components/Footer/footer'
 import styled from 'styled-components'
 
 const MainContainer = styled.div`
