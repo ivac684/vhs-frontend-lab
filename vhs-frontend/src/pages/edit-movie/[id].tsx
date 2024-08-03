@@ -92,7 +92,10 @@ const EditMovie = () => {
       <Header />
       <MainContent>
         <Link href="/">
-          <ArrowBackIcon />
+          CATALOGUE
+        </Link>
+        <Link href={`/movie-details/${id}`}>
+          MOVIE DETAILS
         </Link>
         <FormContainer>
           <FormHeader>EDIT MOVIE</FormHeader>

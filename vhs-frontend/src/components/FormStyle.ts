@@ -15,10 +15,11 @@ export const MainContent = styled.main`
 `;
 
 export const FormContainer = styled.div`
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
+  margin-bottom: 10px;
   padding: 20px;
-  background-color: var(--surface-1);
+  background-color: var(--on-primary);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 `;
@@ -38,7 +39,7 @@ export const Input = styled.input`
   width: 100%;
   padding: 10px;
   border: 1px solid var(--surface-2);
-  background-color: var(--secondary-variant);
+  background-color: var(--primary-highlight);
   border-radius: 4px;
   font-size: 16px;
   color: var(--secondary-highlight);
