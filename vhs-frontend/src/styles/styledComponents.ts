@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Delete } from '@styled-icons/material/Delete';
 import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt';
 import { ArrowBack } from '@styled-icons/material-outlined/ArrowBack';
+import Link from 'next/link';
 
 export const ItemInfo = styled.p`
   font-size: 14px;
@@ -60,6 +61,14 @@ export const Item = styled.article`
   }
 `;
 
+export const ItemLink = styled(Link)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ItemImageContainer = styled.div`
   width: 40%;
   height: 100%;
@@ -99,21 +108,20 @@ export const ItemTitle = styled.h3`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: normal;
+ 
 `;
 
 export const ItemsRow = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 5px;
-  margin-top: 5px;
 `;
 
 export const ItemYear = styled(ItemInfo)`
   margin-left: 5px;
   color: var(--on-surface-lv1);
   cursor: pointer;
-  display: inline;
+  
 `;
 
 export const ItemAvailability = styled.div<{ available: boolean }>`
@@ -128,6 +136,7 @@ export const EditIcon = styled(EditAlt)`
   margin-right: 10px;
   width: 20px; 
   height: 20px;
+  transition: all 0.3s ease;
   &:hover {
     color: var(--on-surface-lv1);
   }
@@ -138,6 +147,7 @@ export const DeleteIcon = styled(Delete)`
   color: var(--on-surface-lv2);
   width: 20px; 
   height: 20px;
+  transition: all 0.3s ease;
   &:hover {
     color: var(--on-surface-lv1);
   }
@@ -149,6 +159,7 @@ export const ArrowBackIcon = styled(ArrowBack)`
   width: 30px;
   height: 30px;
   height: 25px;
+  transition: all 0.3s ease;
   &:hover {
     color: var(--on-surface-lv4);
   }
@@ -168,6 +179,7 @@ export const GenreAddButton = styled.button`
   color: var(--on-surface-lv1);
   font-size: 14px;
   cursor: pointer;
+  transition: all 0.3s ease;
   &:hover {
     background-color: var(--secondary-default);
   }
@@ -208,6 +220,7 @@ export const GenreItem = styled.div`
   padding: 10px 18px;
   cursor: pointer;
   color: var(--surface-0);
+  transition: all 0.3s ease;
   &:hover {
     background-color: var(--on-primary);
   }

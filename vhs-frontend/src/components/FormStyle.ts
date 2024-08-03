@@ -19,9 +19,10 @@ export const FormContainer = styled.div`
   margin: 0 auto;
   margin-bottom: 10px;
   margin-top: 20px;
-  padding: 20px;
+  padding: 40px;
   background-color: var(--on-primary);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
 export const FormHeader = styled.h1`
@@ -69,18 +70,23 @@ export const TextArea = styled.textarea`
 `;
 
 export const SubmitButton = styled.button`
-  width: 100%;
+  width: 10%;
   padding: 10px;
   border: none;
-  background-color: var(--primary);
+  background-color: rgb(2, 113, 2);
   color: white;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 4px;
+  margin-top: 30px;
   cursor: pointer;
+  position: absolute;
+   bottom: -10px; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: var(--primary-dark);
+    background-color: #0a3002;
   }
 `;
 
@@ -111,6 +117,9 @@ export const NavButton = styled.button`
   background-color: var(--on-primary);
   color: var(--secondary-highlight);
   cursor: pointer;
+  &:hover {
+    background-color: var(--secondary-default);
+  }
 
 `
 

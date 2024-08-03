@@ -20,6 +20,7 @@ import {
   AddButton,
   IconsWrapper,
   ItemDescription,
+  ItemLink,
 } from '@/styles/styledComponents'
 import ItemContainer from '@/components/ItemContainer'
 import { deleteMovie } from '@/utils/deleteMovie'
@@ -42,7 +43,7 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
   const handleDelete = useDeleteMovie()
 
   const filteredMovies = filterMoviesByGenre(data, selectedGenre)
-  const isSmallScreen = useScreenSize();
+  const isSmallScreen = useScreenSize()
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible)
@@ -88,11 +89,14 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
         {filteredMovies.map(item => (
           <Item key={item.id}>
             <ItemImageContainer>
-              <ItemImage
-                src={item.thumbnail ? `http://localhost:3000/${item.thumbnail}` : '/placeholder.png'}
-                alt={item.title}
-              />
+              <ItemLink href={`/movie-details/${item.id}`}>
+                <ItemImage
+                  src={item.thumbnail ? `http://localhost:3000/${item.thumbnail}` : '/placeholder.png'}
+                  alt={item.title}
+                />
+              </ItemLink>
             </ItemImageContainer>
+
             <ItemDetails>
               <ItemsRow>
                 <Link href={`/movie-details/${item.id}`}>
@@ -110,7 +114,11 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
               </ItemsRow>
               <ItemAvailability available={item.quantity > 0}>
                 {isSmallScreen ? (
-                  item.quantity > 0 ? <CircleCheck size="20"/> : <CircleXmark size="20" />
+                  item.quantity > 0 ? (
+                    <CircleCheck size="20" />
+                  ) : (
+                    <CircleXmark size="20" />
+                  )
                 ) : (
                   <b>{item.quantity > 0 ? 'AVAILABLE' : 'NOT AVAILABLE'}</b>
                 )}
