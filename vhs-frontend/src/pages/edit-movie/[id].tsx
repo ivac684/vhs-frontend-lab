@@ -82,7 +82,7 @@ const EditMovie = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateForm()) {
-      setError('All fields are required and must be valid.')
+      window.confirm('All fields except thumbnail are required and must be valid.');
       return
     }
     const formData = new FormData()

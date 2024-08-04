@@ -35,7 +35,7 @@ export default function AddMovie() {
       form.rentalDuration <= 0 ||
       form.quantity < 0
     ) {
-      setError('All fields except thumbnail are required and must be valid.');
+      window.confirm('All fields except thumbnail are required and must be valid.');
       return;
     }
 
