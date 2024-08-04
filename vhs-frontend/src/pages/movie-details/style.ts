@@ -126,7 +126,7 @@ export const EditButton = styled(ActionButton)`
   background-color: var(--edit);
   
   &:hover {
-    background-color: var(--on-secondary);
+    background-color: #0a3002;
   }
 `;
 

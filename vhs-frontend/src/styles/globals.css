@@ -22,12 +22,12 @@
     
     --on-surface-lv1: #000000;
     --on-surface-lv2: #660000;
-    --on-surface-lv3: rgb(3, 87, 3);
+    --on-surface-lv3: #035703;
     --on-surface-lv4: #795f00;
 
     --genre: #F26666;
     --edit: #183D00;
-    --delete: rgb(202, 0, 0);
+    --delete: #CA0000;
 
 }
 
@@ -53,8 +53,8 @@
     --on-surface-lv4: #9e866b;
 
     --genre: #F26666;
-    --delete: rgb(202, 0, 0);
-    --edit: rgb(2, 113, 2);
+    --delete: #CA0000;
+    --edit: #027102;
 }
 
 * {
