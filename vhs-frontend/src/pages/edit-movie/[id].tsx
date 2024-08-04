@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import axios from 'axios';
-import {ItemTitle, ArrowBackIcon } from '../../styles/styledComponents';
-import Link from 'next/link';
-import Header from '@/components/Header/header';
-import Footer from '@/components/Footer/footer';
-import ImageUploader from '@/components/ImageUploader';
-import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, NavButton, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle';
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import axios from 'axios'
+import { ItemTitle, ArrowBackIcon } from '../../styles/styledComponents'
+import Link from 'next/link'
+import Header from '@/components/Header/header'
+import Footer from '@/components/Footer/footer'
+import {
+  ErrorMessage,
+  FormContainer,
+  FormField,
+  FormHeader,
+  Input,
+  MainContent,
+  NavButton,
+  PageContainer,
+  SubmitButton,
+  TextArea,
+} from '@/components/FormStyle'
 
 type VHSForm = {
-  title: string;
-  description: string;
-  genre: string;
-  duration: number;
-  releasedAt: number;
-  rentalPrice: number;
-  rentalDuration: number;
-  quantity: number;
-  thumbnail: string | File;
-};
+  title: string
+  description: string
+  genre: string
+  duration: number
+  releasedAt: number
+  rentalPrice: number
+  rentalDuration: number
+  quantity: number
+  thumbnail: string | File
+}
 
 const EditMovie = () => {
   const [form, setForm] = useState<VHSForm>({
@@ -31,74 +41,76 @@ const EditMovie = () => {
     rentalDuration: 0,
     quantity: 0,
     thumbnail: '',
-  });
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const router = useRouter();
-  const { id } = router.query;
+  })
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
+  const router = useRouter()
+  const { id } = router.query
 
   useEffect(() => {
     if (id) {
       axios
         .get(`http://localhost:3000/api/vhs/${id}`)
         .then(response => {
-          setForm(response.data);
-          setLoading(false);
+          setForm(response.data)
+          setLoading(false)
         })
         .catch(() => {
-          setError('Failed to load movie data');
-          setLoading(false);
-        });
+          setError('Failed to load movie data')
+          setLoading(false)
+        })
     }
-  }, [id]);
+  }, [id])
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData();
+    e.preventDefault()
+    const formData = new FormData()
     for (const [key, value] of Object.entries(form)) {
-      formData.append(key, value as string | Blob);
+      formData.append(key, value as string | Blob)
     }
     try {
       await axios.patch(`http://localhost:3000/api/vhs/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      });
-      router.push('/');
+      })
+      router.push('/')
     } catch {
-      setError('Failed to update movie');
+      setError('Failed to update movie')
     }
-  };
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm(prevForm => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
+    const { name, value, type, files } = e.target as HTMLInputElement
 
-  const handleImageSelect = (file: File | null) => {
-    setForm(prevForm => ({
-      ...prevForm,
-      thumbnail: file || '',
-    }));
-  };
+    if (type === 'file' && files) {
+      const file = files[0] || null
+      setForm(prevForm => ({
+        ...prevForm,
+        thumbnail: file || '',
+      }))
+    } else {
+      setForm(prevForm => ({
+        ...prevForm,
+        [name]: value,
+      }))
+    }
+  }
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>
 
   return (
     <PageContainer>
       <Header />
       <MainContent>
         <Link href="/">
-        <NavButton>
-          <b>GO BACK</b>
+          <NavButton>
+            <b>CATALOGUE</b>
           </NavButton>
         </Link>
         <Link href={`/movie-details/${id}`}>
-        <NavButton>
-        <b>MOVIE DETAILS</b>
+          <NavButton>
+            <b>MOVIE DETAILS</b>
           </NavButton>
         </Link>
         <FormContainer>
@@ -106,32 +118,15 @@ const EditMovie = () => {
           <form onSubmit={handleSubmit}>
             <FormField>
               <ItemTitle>Title</ItemTitle>
-              <Input
-                type="text"
-                name="title"
-                value={form.title}
-                onChange={handleChange}
-                placeholder="Title"
-              />
+              <Input type="text" name="title" value={form.title} onChange={handleChange} placeholder="Title" />
             </FormField>
             <FormField>
               <ItemTitle>Synopsis</ItemTitle>
-              <TextArea
-                name="description"
-                value={form.description}
-                onChange={handleChange}
-                placeholder="Description"
-              />
+              <TextArea name="description" value={form.description} onChange={handleChange} placeholder="Description" />
             </FormField>
             <FormField>
               <ItemTitle>Genre</ItemTitle>
-              <Input
-                type="text"
-                name="genre"
-                value={form.genre}
-                onChange={handleChange}
-                placeholder="Genre"
-              />
+              <Input type="text" name="genre" value={form.genre} onChange={handleChange} placeholder="Genre" />
             </FormField>
             <FormField>
               <ItemTitle>Duration</ItemTitle>
@@ -185,7 +180,21 @@ const EditMovie = () => {
             </FormField>
             <FormField>
               <ItemTitle>Thumbnail</ItemTitle>
-              <ImageUploader onImageSelect={handleImageSelect} initialImage={form.thumbnail} />
+              <Input type="file" name="thumbnail" onChange={handleChange} />
+              <div>
+                <img
+                  src={
+                    typeof form.thumbnail === 'string'
+                      ? `http://localhost:3000/${form.thumbnail}`
+                      : form.thumbnail
+                      ? URL.createObjectURL(form.thumbnail)
+                      : '/placeholder.png'
+                  }
+                  alt="Thumbnail"
+                  width={200}
+                  height={130}
+                />
+              </div>
             </FormField>
             <SubmitButton type="submit">SAVE</SubmitButton>
             {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -194,7 +203,7 @@ const EditMovie = () => {
       </MainContent>
       <Footer />
     </PageContainer>
-  );
-};
+  )
+}
 
-export default EditMovie;
+export default EditMovie

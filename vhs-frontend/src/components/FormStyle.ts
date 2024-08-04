@@ -38,13 +38,12 @@ export const FormField = styled.div`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 10px;
   border: 1px solid var(--surface-2);
   background-color: var(--primary-highlight);
-  border-radius: 4px;
   font-size: 16px;
   color: black;
   margin-top: 10px;
+  margin-bottom: 10px;
 
   &:focus {
     border-color: var(--on-surface-lv2);

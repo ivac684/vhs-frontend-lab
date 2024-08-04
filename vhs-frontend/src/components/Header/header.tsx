@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { FlexContainer, HeaderContainer, ImageContainer, SearchIcon, SettingsIcon,SearchInput } from './style'
+import { FlexContainer, HeaderContainer, ImageContainer, SearchIcon, SettingsIcon, SearchInput } from './style'
 
 interface HeaderProps {
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>
@@ -43,8 +43,11 @@ const Header = ({ setSearchQuery }: HeaderProps) => {
         )}
       </FlexContainer>
       <ImageContainer>
-        <Image src="/backtothepast.png" alt="Back to the Past" width={170} height={80} />
+        <Link href="/">
+          <Image src="/backtothepast.png" alt="Back to the Past" width={170} height={80} />
+        </Link>
       </ImageContainer>
+
       <FlexContainer>
         <Link href={`/settings`}>
           <SettingsIcon />
@@ -54,4 +57,4 @@ const Header = ({ setSearchQuery }: HeaderProps) => {
   )
 }
 
-export default Header;
+export default Header

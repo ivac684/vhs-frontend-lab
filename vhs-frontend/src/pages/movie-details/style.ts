@@ -8,8 +8,7 @@ export const DetailsContainer = styled.div`
 `;
 
 export const DetailImageContainer = styled.div`
-  min-width: 55%;
-  max-width: 55%;
+  width: 700px;
   margin-right: 20px;
   margin-top: 20px;
   display: flex;
@@ -17,7 +16,6 @@ export const DetailImageContainer = styled.div`
   align-items: center;
   overflow: hidden;
   background-color: black; 
-  height: 100%; 
 
   &:hover img {
     transform: scale(0.9);
@@ -28,7 +26,6 @@ export const DetailImageContainer = styled.div`
 export const DetailImage = styled.img`
   width: 100%; 
   transition: transform 0.3s ease;
-  object-fit: cover;
 `;
 
 export const DetailContent = styled.div`

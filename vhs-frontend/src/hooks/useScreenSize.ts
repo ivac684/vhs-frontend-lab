@@ -5,7 +5,7 @@ const useScreenSize = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 900);
+      setIsSmallScreen(window.innerWidth <= 1120);
     };
 
     handleResize(); 
