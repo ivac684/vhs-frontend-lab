@@ -38,12 +38,14 @@ export const FormField = styled.div`
 
 export const Input = styled.input`
   width: 100%;
+  height: 35px;
   border: 1px solid var(--surface-2);
   background-color: var(--primary-highlight);
   font-size: 16px;
   color: black;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding: 5px;
 
   &:focus {
     border-color: var(--on-surface-lv2);
@@ -53,9 +55,9 @@ export const Input = styled.input`
 
 export const TextArea = styled.textarea`
   width: 100%;
+  height: 40px;
   padding: 10px;
   border: 1px solid var(--surface-2);
-  border-radius: 4px;
   font-size: 16px;
   color: black;
   background-color: var(--primary-highlight);

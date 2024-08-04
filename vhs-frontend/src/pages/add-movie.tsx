@@ -5,7 +5,6 @@ import { ArrowBackIcon, ItemTitle } from '@/styles/styledComponents';
 import Link from 'next/link';
 import Header from '../components/Header/header';
 import Footer from '../components/Footer/footer';
-import ImageUploader from '@/components/ImageUploader';
 import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle';
 
 export default function AddMovie() {
@@ -18,7 +17,7 @@ export default function AddMovie() {
     rentalPrice: 0,
     rentalDuration: 0,
     quantity: 0,
-    thumbnail: '',
+    thumbnail: 'placeholder.png'
   });
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -58,18 +57,20 @@ export default function AddMovie() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm(prevForm => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
+    const { name, value, type, files } = e.target as HTMLInputElement;
 
-  const handleImageSelect = (file: File | null) => {
-    setForm(prevForm => ({
-      ...prevForm,
-      thumbnail: file || '',
-    }));
+    if (type === 'file' && files) {
+      const file = files[0] || 'placeholder.png';
+      setForm(prevForm => ({
+        ...prevForm,
+        thumbnail: file,
+      }));
+    } else {
+      setForm(prevForm => ({
+        ...prevForm,
+        [name]: value,
+      }));
+    }
   };
 
   return (
@@ -171,7 +172,21 @@ export default function AddMovie() {
             </FormField>
             <FormField>
               <ItemTitle>Thumbnail</ItemTitle>
-              <ImageUploader onImageSelect={handleImageSelect} initialImage={form.thumbnail} />
+              <Input type="file" name="thumbnail" onChange={handleChange} />
+              <div>
+                <img
+                  src={
+                    typeof form.thumbnail === 'string'
+                      ? `http://localhost:3000/${form.thumbnail}`
+                      : form.thumbnail
+                      ? URL.createObjectURL(form.thumbnail)
+                      : '/placeholder.png'
+                  }
+                  alt="Thumbnail"
+                  width={200}
+                  height={130}
+                />
+              </div>
             </FormField>
             <SubmitButton type="submit">
               <b>SAVE</b>
