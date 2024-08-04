@@ -100,7 +100,7 @@ const Catalogue = ({ searchQuery }: HomepageProps) => {
             <ItemDetails>
               <ItemsRow>
                 <Link href={`/movie-details/${item.id}`}>
-                  <ItemTitle>{item.title}</ItemTitle> <ItemYear>({item.releasedAt})</ItemYear>
+                  <ItemTitle><b>{item.title}</b> ({item.releasedAt})</ItemTitle>
                 </Link>
               </ItemsRow>
               <ItemsRow>

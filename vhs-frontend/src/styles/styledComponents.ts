@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Delete } from '@styled-icons/material/Delete';
-import { EditAlt } from '@styled-icons/boxicons-solid/EditAlt';
+import { Delete } from '@styled-icons/material-outlined/Delete';
+import { Edit } from '@styled-icons/material-outlined/Edit';
 import { ArrowBack } from '@styled-icons/material-outlined/ArrowBack';
 import Link from 'next/link';
 
@@ -102,7 +102,6 @@ export const ItemTitle = styled.h3`
   font-size: 18px;
   color: var(--on-surface-lv1);
   cursor: pointer;
-  display: inline;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -121,7 +120,6 @@ export const ItemYear = styled(ItemInfo)`
   margin-left: 5px;
   color: var(--on-surface-lv1);
   cursor: pointer;
-  
 `;
 
 export const ItemAvailability = styled.div<{ available: boolean }>`
@@ -130,10 +128,10 @@ export const ItemAvailability = styled.div<{ available: boolean }>`
   position: relative;
 `;
 
-export const EditIcon = styled(EditAlt)` 
+export const EditIcon = styled(Edit)` 
   cursor: pointer;
   color: var(--on-surface-lv2);
-  margin-right: 10px;
+  margin-right: 5px;
   width: 20px; 
   height: 20px;
   transition: all 0.3s ease;
@@ -145,7 +143,6 @@ export const EditIcon = styled(EditAlt)`
 export const DeleteIcon = styled(Delete)` 
   cursor: pointer;
   color: var(--on-surface-lv2);
-  width: 20px; 
   height: 20px;
   transition: all 0.3s ease;
   &:hover {

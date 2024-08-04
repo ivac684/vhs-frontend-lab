@@ -62,8 +62,29 @@ const EditMovie = () => {
     }
   }, [id])
 
+  const validateForm = () => {
+    if (
+      form.title.trim() === '' ||
+      form.description.trim() === '' ||
+      form.genre.trim() === '' ||
+      form.duration <= 0 ||
+      form.releasedAt <= 0 ||
+      form.rentalPrice <= 0 ||
+      form.rentalDuration <= 0 ||
+      form.quantity < 0 ||
+      form.thumbnail === ''
+    ) {
+      return false
+    }
+    return true
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!validateForm()) {
+      setError('All fields are required and must be valid.')
+      return
+    }
     const formData = new FormData()
     for (const [key, value] of Object.entries(form)) {
       formData.append(key, value as string | Blob)
@@ -92,7 +113,7 @@ const EditMovie = () => {
     } else {
       setForm(prevForm => ({
         ...prevForm,
-        [name]: value,
+        [name]: type === 'number' ? Number(value) : value,
       }))
     }
   }
