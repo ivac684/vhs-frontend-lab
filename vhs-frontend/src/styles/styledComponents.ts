@@ -4,6 +4,15 @@ import { Edit } from '@styled-icons/material-outlined/Edit';
 import { ArrowBack } from '@styled-icons/material-outlined/ArrowBack';
 import Link from 'next/link';
 
+export const ItemContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 auto;
+  margin-left: 20px;
+  margin-bottom: 100px;
+`;
+
 export const ItemInfo = styled.p`
   font-size: 14px;
   margin: 2px 0;
@@ -116,13 +125,7 @@ export const ItemsRow = styled.div`
   margin-bottom: 5px;
 `;
 
-export const ItemYear = styled(ItemInfo)`
-  margin-left: 5px;
-  color: var(--on-surface-lv1);
-  cursor: pointer;
-`;
-
-export const ItemAvailability = styled.div<{ available: boolean }>`
+export const ItemAvailability = styled.div<{available: boolean}>`
   color: ${({ available }) => (available ? 'var(--on-surface-lv3)' : 'var(--delete)')};
   font-size: 18px;
   position: relative;

@@ -80,7 +80,7 @@ export const SubmitButton = styled.button`
   font-weight: bold;
   cursor: pointer;
   position: absolute;
-   bottom: -10px; 
+  bottom: -10px; 
   left: 50%;
   transform: translate(-50%, -50%);
   transition: all 0.3s ease;
@@ -120,5 +120,4 @@ export const NavButton = styled.button`
   &:hover {
     background-color: var(--secondary-default);
   }
-
 `

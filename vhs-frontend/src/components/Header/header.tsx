@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -44,7 +43,7 @@ const Header = ({ setSearchQuery }: HeaderProps) => {
       </FlexContainer>
       <ImageContainer>
         <Link href="/">
-          <Image src="/backtothepast.png" alt="Back to the Past" width={170} height={80} />
+          <Image src="/backtothepast.png" alt="Back to the Past" width={170} height={80} priority/>
         </Link>
       </ImageContainer>
 

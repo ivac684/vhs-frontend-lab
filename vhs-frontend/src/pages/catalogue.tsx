@@ -9,7 +9,6 @@ import {
   ItemsRow,
   ItemGenre,
   ItemDuration,
-  ItemYear,
   ItemAvailability,
   GenreButton,
   GenreDropdown,
@@ -21,11 +20,9 @@ import {
   IconsWrapper,
   ItemDescription,
   ItemLink,
+  ItemContainer,
 } from '@/styles/styledComponents'
-import ItemContainer from '@/components/ItemContainer'
-import { deleteMovie } from '@/utils/deleteMovie'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { filterMoviesByGenre } from '@/utils/handleGenreFiltering'
 import useScreenSize from '@/hooks/useScreenSize'
 import { CircleCheck } from '@styled-icons/fa-solid/CircleCheck'

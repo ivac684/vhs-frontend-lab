@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import axios from 'axios';
-import { ArrowBackIcon, ItemTitle } from '@/styles/styledComponents';
-import Link from 'next/link';
-import Header from '../components/Header/header';
-import Footer from '../components/Footer/footer';
-import { ErrorMessage, FormContainer, FormField, FormHeader, Input, MainContent, PageContainer, SubmitButton, TextArea } from '@/components/FormStyle';
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import axios from 'axios'
+import { ArrowBackIcon, ItemTitle } from '@/styles/styledComponents'
+import Link from 'next/link'
+import Header from '../components/Header/header'
+import Footer from '../components/Footer/footer'
+import { ErrorMessage, FormContainer,FormField,FormHeader,Input,MainContent,PageContainer,SubmitButton,TextArea,
+} from '@/components/FormStyle'
 
 export default function AddMovie() {
   const [form, setForm] = useState<VHSForm>({
@@ -17,13 +18,13 @@ export default function AddMovie() {
     rentalPrice: 0,
     rentalDuration: 0,
     quantity: 0,
-    thumbnail: 'placeholder.png'
-  });
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+    thumbnail: 'placeholder.png',
+  })
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (
       !form.title ||
@@ -35,13 +36,13 @@ export default function AddMovie() {
       form.rentalDuration <= 0 ||
       form.quantity < 0
     ) {
-      window.confirm('All fields except thumbnail are required and must be valid.');
-      return;
+      window.confirm('All fields except thumbnail are required and must be valid.')
+      return
     }
 
-    const formData = new FormData();
+    const formData = new FormData()
     for (const [key, value] of Object.entries(form)) {
-      formData.append(key, value as string | Blob);
+      formData.append(key, value as string | Blob)
     }
 
     try {
@@ -49,29 +50,29 @@ export default function AddMovie() {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      });
-      router.push('/');
+      })
+      router.push('/')
     } catch {
-      setError('Failed to add movie');
+      setError('Failed to add movie')
     }
-  };
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type, files } = e.target as HTMLInputElement;
+    const { name, value, type, files } = e.target as HTMLInputElement
 
     if (type === 'file' && files) {
-      const file = files[0] || 'placeholder.png';
+      const file = files[0] || 'placeholder.png'
       setForm(prevForm => ({
         ...prevForm,
         thumbnail: file,
-      }));
+      }))
     } else {
       setForm(prevForm => ({
         ...prevForm,
         [name]: value,
-      }));
+      }))
     }
-  };
+  }
 
   return (
     <PageContainer>
@@ -85,14 +86,7 @@ export default function AddMovie() {
           <form onSubmit={handleSubmit}>
             <FormField>
               <ItemTitle>Title</ItemTitle>
-              <Input
-                type="text"
-                name="title"
-                value={form.title}
-                onChange={handleChange}
-                placeholder="Title"
-                required
-              />
+              <Input type="text" name="title" value={form.title} onChange={handleChange} placeholder="Title" required />
             </FormField>
             <FormField>
               <ItemTitle>Synopsis</ItemTitle>
@@ -106,14 +100,7 @@ export default function AddMovie() {
             </FormField>
             <FormField>
               <ItemTitle>Genre</ItemTitle>
-              <Input
-                type="text"
-                name="genre"
-                value={form.genre}
-                onChange={handleChange}
-                placeholder="Genre"
-                required
-              />
+              <Input type="text" name="genre" value={form.genre} onChange={handleChange} placeholder="Genre" required />
             </FormField>
             <FormField>
               <ItemTitle>Duration</ItemTitle>
@@ -197,5 +184,5 @@ export default function AddMovie() {
       </MainContent>
       <Footer />
     </PageContainer>
-  );
+  )
 }

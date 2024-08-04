@@ -8,5 +8,5 @@ interface VHS {
     rentalPrice: number;
     rentalDuration: number;
     quantity: number;
-    thumbnail: string;
+    thumbnail: 'placeholder.png' | File;
   }

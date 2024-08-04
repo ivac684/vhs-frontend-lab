@@ -1,34 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { ItemTitle, ArrowBackIcon } from '../../styles/styledComponents'
+import { ItemTitle } from '../../styles/styledComponents'
 import Link from 'next/link'
 import Header from '@/components/Header/header'
 import Footer from '@/components/Footer/footer'
-import {
-  ErrorMessage,
-  FormContainer,
-  FormField,
-  FormHeader,
-  Input,
-  MainContent,
-  NavButton,
-  PageContainer,
-  SubmitButton,
-  TextArea,
-} from '@/components/FormStyle'
-
-type VHSForm = {
-  title: string
-  description: string
-  genre: string
-  duration: number
-  releasedAt: number
-  rentalPrice: number
-  rentalDuration: number
-  quantity: number
-  thumbnail: string | File
-}
+import { ErrorMessage,FormContainer,FormField,FormHeader,Input,MainContent,NavButton,PageContainer, SubmitButton, TextArea} 
+from '@/components/FormStyle'
 
 const EditMovie = () => {
   const [form, setForm] = useState<VHSForm>({
@@ -40,7 +18,7 @@ const EditMovie = () => {
     rentalPrice: 0,
     rentalDuration: 0,
     quantity: 0,
-    thumbnail: '',
+    thumbnail: 'placeholder.png',
   })
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
@@ -72,7 +50,7 @@ const EditMovie = () => {
       form.rentalPrice <= 0 ||
       form.rentalDuration <= 0 ||
       form.quantity < 0 ||
-      form.thumbnail === ''
+      form.thumbnail === 'placeholder.png'
     ) {
       return false
     }
@@ -82,7 +60,7 @@ const EditMovie = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateForm()) {
-      window.confirm('All fields except thumbnail are required and must be valid.');
+      window.confirm('All fields except thumbnail are required and must be valid.')
       return
     }
     const formData = new FormData()
