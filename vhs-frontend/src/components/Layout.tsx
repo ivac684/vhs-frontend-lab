@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import Header from '@/components/Header/header';
-import { ChildrenProps } from '@/types/ChildrenProps';
 
-const Layout = ({ children }: ChildrenProps) => {
+const Layout = ({ children }: PropsWithChildren) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
