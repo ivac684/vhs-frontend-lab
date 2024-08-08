@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ArrowBack } from '@styled-icons/material-outlined/ArrowBack';
 
 export const PageContainer = styled.div`
   display: flex;
@@ -95,18 +94,6 @@ export const ErrorMessage = styled.p`
   font-size: 14px;
   margin-top: 10px;
   text-align: center;
-`;
-
-export const ArrowBackIcon = styled(ArrowBack)`
-  width: 24px;
-  height: 24px;
-  color: var(--primary);
-  cursor: pointer;
-  margin-bottom: 20px;
-
-  &:hover {
-    color: var(--primary-dark);
-  }
 `;
 
 export const NavButton = styled.button`

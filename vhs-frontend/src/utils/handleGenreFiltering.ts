@@ -3,4 +3,3 @@
        ? movies
        : movies.filter(item => item.genre.includes(selectedGenre));
    };
-  

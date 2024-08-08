@@ -46,12 +46,9 @@ const Header = ({ setSearchQuery }: HeaderProps) => {
           <Image src="/backtothepast.png" alt="Back to the Past" width={170} height={80} priority/>
         </Link>
       </ImageContainer>
-
-      <FlexContainer>
         <Link href={`/settings`}>
           <SettingsIcon />
         </Link>
-      </FlexContainer>
     </HeaderContainer>
   )
 }

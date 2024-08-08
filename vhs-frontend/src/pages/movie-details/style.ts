@@ -12,9 +12,6 @@ export const DetailImageContainer = styled.div`
   margin-right: 20px;
   margin-top: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
   background-color: black; 
 
   &:hover img {
@@ -68,7 +65,6 @@ export const DetailYear = styled.span`
 export const DetailAvailability = styled.p<{ available: boolean }>`
   color: ${({ available }) => (available ? 'var(--on-surface-lv3)' : 'var(--delete)')};
   font-size: 20px;
-  margin: 0;
   text-align: center;
   align-self: center;
 `;
@@ -84,7 +80,6 @@ export const RentalInfo = styled.div`
   background-color: var(--on-primary);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   height: 100px; 
   width: 80%;
@@ -135,21 +130,6 @@ export const DeleteButton = styled(ActionButton)`
   
   &:hover {
     background-color: var(--secondary-default);
-  }
-`;
-
-export const BackButton = styled.a`
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 7px 20px;
-  background-color: var(--on-primary);
-  text-decoration: none;
-  cursor: pointer;
-  clip-path: polygon(0 0, 87% 0, 100% 100%, 11% 100%);
-  transition: background-color 0.3s ease;
-  
-  &:hover {
-    background-color: var(--on-surface-lv2);
   }
 `;
 
