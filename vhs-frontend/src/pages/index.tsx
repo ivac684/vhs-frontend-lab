@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
-import Catalogue from './catalogue'
+import Catalogue from './Catalogue/catalogue'
 import Footer from '../components/Footer/footer'
-import { PageContainer } from '@/components/FormStyle'
+import { PageContainer } from '@/styles/FormStyle'
 
 interface HomeProps {
   searchQuery: string

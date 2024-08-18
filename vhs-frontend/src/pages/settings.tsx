@@ -1,11 +1,11 @@
 import React from 'react'
 import { useThemeContext } from '@/context/ThemeContext'
 import styled from 'styled-components'
-import { ArrowBackIcon } from '@/styles/styledComponents'
+import { ArrowBackIcon } from '@/pages/Catalogue/style'
 import Header from '../components/Header/header'
 import Footer from '../components/Footer/footer'
 import Link from 'next/link'
-import { MainContent, FormContainer } from '@/components/FormStyle'
+import { MainContent, FormContainer } from '@/styles/FormStyle'
 
 export const SettingsContainer = styled.div`
   display: flex;

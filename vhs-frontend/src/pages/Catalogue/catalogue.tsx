@@ -21,7 +21,7 @@ import {
   ItemDescription,
   ItemLink,
   ItemContainer,
-} from '@/styles/styledComponents'
+} from '@/pages/Catalogue/style'
 import Link from 'next/link'
 import { filterMoviesByGenre } from '@/utils/handleGenreFiltering'
 import useScreenSize from '@/hooks/useScreenSize'

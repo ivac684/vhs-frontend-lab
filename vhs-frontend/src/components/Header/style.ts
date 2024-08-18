@@ -20,17 +20,11 @@ export const ImageContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  // justify-content: center;
-  // align-items: center;
   width: 170px;
   height: 80px;
 `;
 
-export const FlexContainer = styled.div`
-  //display: flex;
-  // align-items: center;
-  // z-index: 1;
-`;
+export const FlexContainer = styled.div``;
 
 export const SettingsIcon = styled(Settings)` 
   cursor: pointer;
